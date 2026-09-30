@@ -1,0 +1,3761 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Critérios de Avaliação · Fazenda Boi Verde</title>
+<meta name="description" content="Indicadores e critérios de avaliação de cada função da Fazenda Boi Verde.">
+<meta name="theme-color" content="#050605">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="Avaliação BV">
+<link rel="manifest" href="manifest.json">
+<link rel="icon" href="favicon.ico" sizes="any">
+<link rel="icon" type="image/png" sizes="192x192" href="icons/icon-192.png">
+<link rel="apple-touch-icon" href="icons/apple-touch-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600&family=Inter:wght@400;500;600;700&display=swap">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" defer></script>
+<style>
+:root{
+  --bg:#050605;
+  --bg2:#0a0c0a;
+  --card:#0d120e;
+  --card2:#151d16;
+  --line:rgba(255,255,255,.08);
+  --txt:#edefed;
+  --muted:#8a978c;
+  --accent:#4ade80;
+  --accent2:#22c55e;
+  --accent-glow:rgba(34,197,94,.35);
+  --yellow:#f59e0b;
+  --red:#ef4444;
+  --blue:#3b82f6;
+  --gold:#c9a24a;
+  --gold-soft:rgba(201,162,74,.13);
+  --radius:16px;
+  --ease:cubic-bezier(.16,1,.3,1);
+  --serif:'Fraunces',Georgia,'Times New Roman',serif;
+  --sans:'Inter',system-ui,-apple-system,'Segoe UI',Roboto,sans-serif;
+  --safe-t:env(safe-area-inset-top,0px);
+  --safe-b:env(safe-area-inset-bottom,0px);
+  --safe-l:env(safe-area-inset-left,0px);
+  --safe-r:env(safe-area-inset-right,0px);
+}
+*{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
+html{background:var(--bg);color-scheme:dark;-webkit-text-size-adjust:100%}
+body{font-family:var(--sans);background:var(--bg);color:var(--txt);font-size:16px;line-height:1.5;min-height:100dvh;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+body::before{content:"";position:fixed;left:50%;top:-30vh;width:140vw;max-width:900px;height:70vh;transform:translateX(-50%);background:radial-gradient(closest-side,rgba(34,197,94,.13),rgba(34,197,94,.04) 55%,transparent);pointer-events:none;z-index:0}
+button{font:inherit;color:inherit;background:none;border:0;cursor:pointer;touch-action:manipulation}
+:focus-visible{outline:2px solid var(--accent);outline-offset:2px;border-radius:10px}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+
+#app{position:relative;z-index:1;max-width:520px;margin:0 auto;min-height:100dvh;padding:0 calc(16px + var(--safe-r)) calc(40px + var(--safe-b)) calc(16px + var(--safe-l))}
+
+/* ---------- header ---------- */
+.hdr{position:sticky;top:0;z-index:20;margin:0 calc(-16px - var(--safe-r)) 0 calc(-16px - var(--safe-l));padding:calc(10px + var(--safe-t)) calc(16px + var(--safe-r)) 10px calc(16px + var(--safe-l));display:flex;align-items:center;gap:10px;min-height:calc(60px + var(--safe-t));background:rgba(5,6,5,.74);-webkit-backdrop-filter:blur(20px) saturate(140%);backdrop-filter:blur(20px) saturate(140%);border-bottom:1px solid var(--line)}
+.hdr-logo{width:36px;height:36px;border-radius:50%;flex:none;box-shadow:0 0 0 1px rgba(201,162,74,.55)}
+.hdr-t{min-width:0;flex:1}
+.hdr-t small{display:block;font-size:12px;line-height:1.3;color:var(--muted);letter-spacing:.02em}
+.hdr-t b{display:block;font-size:15px;font-weight:600;line-height:1.3;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.back{flex:none;min-width:44px;height:44px;display:inline-flex;align-items:center;gap:2px;margin-left:-8px;padding:0 10px 0 4px;border-radius:12px;color:var(--accent);font-weight:600;font-size:15px}
+.back:active{background:rgba(74,222,128,.08)}
+
+/* ---------- tipografia ---------- */
+.eyebrow{font-size:12px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--gold)}
+.display{font-family:var(--serif);font-weight:600;font-size:34px;line-height:1.1;letter-spacing:-.01em;margin-top:6px}
+.display:focus{outline:none}
+.lead{color:var(--muted);font-size:15px;margin-top:8px;max-width:40ch}
+.sec-label{display:flex;align-items:baseline;justify-content:space-between;margin:28px 2px 10px;font-size:13px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+.sec-label span{font-variant-numeric:tabular-nums;letter-spacing:0}
+
+/* ---------- gate ---------- */
+.gate{padding-top:calc(44px + var(--safe-t));text-align:center}
+.gate-logo{width:112px;height:112px;border-radius:50%;margin:0 auto 22px;display:block;box-shadow:0 0 0 1px rgba(201,162,74,.6),0 24px 60px -16px var(--accent-glow)}
+.gate .lead{margin-left:auto;margin-right:auto}
+.gate .list{text-align:left}
+
+/* ---------- listas / cards ---------- */
+.list{display:grid;gap:10px;margin-top:24px}
+.card-btn{display:flex;align-items:center;gap:14px;width:100%;text-align:left;min-height:68px;padding:12px 14px 12px 12px;background:var(--card);border:1px solid var(--line);border-radius:var(--radius);transition:border-color .2s var(--ease),background-color .2s var(--ease)}
+.card-btn:hover{border-color:rgba(74,222,128,.28);background:var(--card2)}
+.card-btn:active{background:var(--card2)}
+.av{flex:none;width:44px;height:44px;border-radius:50%;display:grid;place-items:center;font-weight:600;font-size:16px;color:var(--accent);background:radial-gradient(circle at 30% 25%,rgba(74,222,128,.22),rgba(34,197,94,.05));box-shadow:inset 0 0 0 1px rgba(74,222,128,.28)}
+.ci{flex:1;min-width:0}
+.ci b{display:block;font-weight:600;font-size:16px;line-height:1.3}
+.ci span{display:block;font-size:13.5px;line-height:1.4;color:var(--muted);margin-top:2px}
+.pill{flex:none;display:inline-flex;align-items:center;gap:5px;font-size:13px;font-weight:600;line-height:1;color:var(--gold);background:var(--gold-soft);padding:6px 9px;border-radius:999px;font-variant-numeric:tabular-nums}
+.chev{flex:none;color:var(--muted)}
+
+/* ---------- home do líder ---------- */
+.hello{padding-top:26px}
+.self{margin-top:36px;padding-top:18px;border-top:1px solid var(--line)}
+.self-btn{display:flex;align-items:center;gap:12px;width:100%;min-height:52px;padding:6px 4px;border-radius:12px;text-align:left;color:var(--muted)}
+.self-btn:hover,.self-btn:active{color:var(--txt)}
+.self-btn .ci b{font-size:15px;font-weight:500}
+.self-btn .ci span{font-size:13px}
+.self-ic{flex:none;width:36px;height:36px;border-radius:50%;display:grid;place-items:center;border:1px dashed rgba(255,255,255,.16)}
+
+/* ---------- tela da função ---------- */
+.role-hero{padding-top:24px}
+.chips{display:flex;flex-wrap:wrap;gap:8px;margin-top:14px}
+.chip{display:inline-flex;align-items:center;gap:6px;font-size:13px;line-height:1;color:var(--txt);padding:8px 11px;border-radius:999px;background:var(--card);border:1px solid var(--line)}
+.chip svg{color:var(--accent)}
+.chip.gold{color:var(--gold);background:var(--gold-soft);border-color:transparent;font-variant-numeric:tabular-nums}
+
+.about{margin-top:18px;background:var(--card);border:1px solid var(--line);border-radius:var(--radius)}
+.about summary{list-style:none;display:flex;align-items:center;gap:10px;min-height:52px;padding:0 14px;font-weight:600;font-size:15px;cursor:pointer}
+.about summary::-webkit-details-marker{display:none}
+.about summary .chev{margin-left:auto;transition:transform .3s var(--ease)}
+.about[open] summary .chev{transform:rotate(180deg)}
+.about p{padding:0 14px 16px;color:var(--muted);font-size:14.5px;line-height:1.6}
+
+.inds{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);overflow:hidden}
+.ind{display:flex;align-items:center;gap:12px;width:100%;min-height:50px;padding:10px 14px;text-align:left;font-size:15px;line-height:1.35}
+.ind+.ind{border-top:1px solid var(--line)}
+.ind .n{flex:none;width:26px;font-family:var(--serif);font-size:17px;color:var(--gold);font-variant-numeric:tabular-nums}
+.ind .t{flex:1;min-width:0}
+.ind .go{flex:none;color:var(--muted);opacity:.8}
+button.ind:hover,button.ind:active{background:var(--card2)}
+
+.search{position:relative;margin-top:4px}
+.search input{width:100%;height:50px;padding:0 48px 0 44px;font:inherit;font-size:16px;color:var(--txt);background:var(--card);border:1px solid var(--line);border-radius:14px;outline:none;transition:border-color .2s var(--ease),box-shadow .2s var(--ease)}
+.search input::placeholder{color:var(--muted)}
+.search input:focus{border-color:rgba(74,222,128,.5);box-shadow:0 0 0 4px rgba(74,222,128,.12)}
+.search input::-webkit-search-cancel-button{display:none}
+.search .ic{position:absolute;left:14px;top:50%;transform:translateY(-50%);color:var(--muted);pointer-events:none}
+.search .clr{position:absolute;right:3px;top:3px;width:44px;height:44px;display:none;place-items:center;color:var(--muted);border-radius:12px}
+.search.has .clr{display:grid}
+.search-info{font-size:13px;color:var(--muted);margin:10px 2px 0;min-height:1em}
+
+.accs{display:grid;gap:10px;margin-top:12px}
+.acc{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);scroll-margin-top:calc(84px + var(--safe-t));transition:border-color .25s var(--ease)}
+.acc.open{border-color:rgba(74,222,128,.22)}
+.acc.flash{border-color:var(--gold)}
+.acc-h{display:flex;align-items:center;gap:12px;width:100%;min-height:60px;padding:12px 14px;text-align:left}
+.badge{flex:none;width:32px;height:32px;border-radius:10px;display:grid;place-items:center;font-family:var(--serif);font-size:16px;color:var(--gold);background:var(--gold-soft);font-variant-numeric:tabular-nums}
+.badge.leaf{color:var(--accent);background:rgba(74,222,128,.08)}
+.acc-h .ci b{font-size:15.5px;line-height:1.35}
+.acc-h .ci span{font-size:13px}
+.acc-h .chev{transition:transform .35s var(--ease)}
+.acc.open .acc-h .chev{transform:rotate(180deg);color:var(--accent)}
+.acc-b{display:grid;grid-template-rows:0fr;transition:grid-template-rows .35s var(--ease)}
+.acc.open .acc-b{grid-template-rows:1fr}
+.acc-in{overflow:hidden;min-height:0}
+.crits{list-style:none;padding:2px 14px 14px 14px;display:grid;gap:2px}
+.crit{display:flex;gap:12px;padding:9px 2px;font-size:15px;line-height:1.5;border-top:1px solid rgba(255,255,255,.05)}
+.crit:first-child{border-top:0}
+.crit svg{flex:none;margin-top:3px;color:var(--accent2)}
+.grp-t{padding:14px 16px 4px;font-size:12px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--gold)}
+mark{background:rgba(245,158,11,.22);color:#fde68a;border-radius:3px;padding:0 1px}
+
+.empty{padding:28px 16px;text-align:center;color:var(--muted);background:var(--card);border:1px dashed rgba(255,255,255,.12);border-radius:var(--radius);font-size:15px}
+.empty b{display:block;color:var(--txt);margin-bottom:4px}
+
+.scale{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);overflow:hidden}
+.sc{display:flex;gap:14px;align-items:flex-start;padding:13px 14px}
+.sc+.sc{border-top:1px solid var(--line)}
+.sc .nt{flex:none;width:34px;height:34px;border-radius:50%;display:grid;place-items:center;font-weight:700;font-size:15px;color:#0a0c0a;font-variant-numeric:tabular-nums}
+.sc b{display:block;font-size:15px;font-weight:600}
+.sc span{display:block;font-size:13.5px;color:var(--muted);line-height:1.45}
+
+.foot{margin-top:36px;text-align:center;font-size:12px;color:var(--muted);opacity:.8}
+
+/* ---------- aviso de instalação ---------- */
+.install{position:fixed;z-index:50;left:50%;bottom:calc(12px + var(--safe-b));width:min(488px,calc(100% - 24px - var(--safe-l) - var(--safe-r)));transform:translateX(-50%);display:flex;gap:12px;align-items:flex-start;padding:14px 8px 14px 14px;background:rgba(21,29,22,.94);-webkit-backdrop-filter:blur(20px);backdrop-filter:blur(20px);border:1px solid rgba(74,222,128,.22);border-radius:18px;box-shadow:0 20px 50px -12px rgba(0,0,0,.7)}
+.install img{width:40px;height:40px;border-radius:50%;flex:none}
+.install .ci b{font-size:15px}
+.install .ci span{font-size:13.5px}
+.install .ci svg{display:inline-block;vertical-align:-3px;color:var(--accent)}
+.install .x{flex:none;width:44px;height:44px;margin-top:-8px;display:grid;place-items:center;color:var(--muted);border-radius:12px}
+.install .ok{margin-top:10px;height:40px;padding:0 16px;border-radius:12px;font-weight:600;font-size:14px;color:#052e12;background:linear-gradient(180deg,var(--accent),var(--accent2))}
+
+body.hint #app{padding-bottom:calc(160px + var(--safe-b))}
+@media (min-width:600px){.display{font-size:38px}}
+@media (prefers-reduced-motion:reduce){*,*::before,*::after{transition-duration:.01ms!important;animation-duration:.01ms!important;scroll-behavior:auto!important}}
+</style>
+</head>
+<body>
+<div id="app" aria-live="polite"></div>
+<div id="install-slot"></div>
+
+<script>
+// Gerado a partir dos 21 documentos Word – Fazenda Boi Verde
+const LIDERES = [
+ {
+  "id": "oswaldo",
+  "nome": "Oswaldo",
+  "cargo": "Diretoria",
+  "self": null,
+  "liderados": [
+   "analista-zootecnica",
+   "assessora-executiva",
+   "coord-operacoes-externas",
+   "coord-compras",
+   "copeira",
+   "estagiario-davi",
+   "gerencia-financeiro",
+   "gerencia-geral",
+   "gerencia-gestao-pessoas",
+   "gerencia-manutencao",
+   "motorista"
+  ]
+ },
+ {
+  "id": "jeovane",
+  "nome": "Jeovane",
+  "cargo": "Gerência Geral",
+  "self": "gerencia-geral",
+  "liderados": [
+   "auxiliar-encarregado",
+   "caseiro",
+   "tratorista",
+   "vaqueiro-encarregado"
+  ]
+ },
+ {
+  "id": "alessandro",
+  "nome": "Alessandro",
+  "cargo": "Gerência Manutenção",
+  "self": "gerencia-manutencao",
+  "liderados": [
+   "caseiro",
+   "cuidadora-sede",
+   "servicos-gerais",
+   "zelador-sedes"
+  ]
+ },
+ {
+  "id": "ludmilla",
+  "nome": "Ludmilla",
+  "cargo": "Coordenadora de Compras e Logística",
+  "self": "coord-compras",
+  "liderados": [
+   "estagiaria-juliana",
+   "motorista"
+  ]
+ },
+ {
+  "id": "luciano",
+  "nome": "Luciano",
+  "cargo": "Zelador das Sedes",
+  "self": "zelador-sedes",
+  "liderados": [
+   "caseiro",
+   "cuidadora-sede"
+  ]
+ },
+ {
+  "id": "fernando",
+  "nome": "Fernando",
+  "cargo": "Gerência Financeiro",
+  "self": "gerencia-financeiro",
+  "liderados": [
+   "analista-financeiro"
+  ]
+ },
+ {
+  "id": "iasmim",
+  "nome": "Iasmim",
+  "cargo": "Analista Zootécnica",
+  "self": "analista-zootecnica",
+  "liderados": [
+   "estagiaria-zootecnica"
+  ]
+ },
+ {
+  "id": "luciana",
+  "nome": "Luciana",
+  "cargo": "Gerência de Gestão de Pessoas e Cultura",
+  "self": "gerencia-gestao-pessoas",
+  "liderados": [
+   "copeira"
+  ]
+ },
+ {
+  "id": "geice",
+  "nome": "Geice",
+  "cargo": "Assessora Executiva",
+  "self": "assessora-executiva",
+  "liderados": [
+   "copeira"
+  ]
+ },
+ {
+  "id": "encarregado",
+  "nome": "Encarregado",
+  "cargo": "Vaqueiro principal da fazenda",
+  "self": "vaqueiro-encarregado",
+  "liderados": [
+   "auxiliar-encarregado"
+  ]
+ }
+];
+
+const ROLES = [
+ {
+  "id": "analista-financeiro",
+  "funcao": "Analista Financeiro",
+  "pessoa": "Ana",
+  "lideres": [
+   "fernando"
+  ],
+  "indicadores": [
+   "Cuidado Pessoal",
+   "Comportamento Pessoal",
+   "Classificação de Notas Fiscais de compras dentro da rotina estabelecida",
+   "Agilidade na Programação de Pagamento diário/mensal",
+   "Nível de engajamento com o Líder direto",
+   "Metas alcançadas dentro do prazo",
+   "Proatividade / Iniciativa / Relação Interpessoal",
+   "Qualidade e Assertividade das informações lançadas",
+   "Organização, Controle e Planejamento",
+   "Utilização das Ferramentas Tecnológicas"
+  ],
+  "secoes": [
+   {
+    "titulo": "Cuidado Pessoal",
+    "itens": [
+     "Boa aparência",
+     "Bem-vestida / uniforme",
+     "Uniforme limpo e passado",
+     "Calçado limpo e de boa aparência",
+     "Calçado correto",
+     "Cabelo penteado",
+     "Higiene pessoal / cheiro",
+     "Cuidados com a saúde – médicos e exames em dia",
+     "Higiene bucal",
+     "Boa presença"
+    ],
+    "ind": 1
+   },
+   {
+    "titulo": "Comportamento Pessoal",
+    "itens": [
+     "Comportamento durante o trabalho",
+     "Tratativa com os colegas de trabalho",
+     "Relação interpessoal",
+     "Com o líder – respeito / reciprocidade",
+     "Aceitação na escuta e feedback",
+     "Comportamento com a família / amigos",
+     "Comportamento fora do ciclo do trabalho",
+     "Vícios",
+     "Saúde mental",
+     "Saúde financeira – adiantamento (20%) e empréstimos",
+     "Diálogo e abertura para ouvir os colegas"
+    ],
+    "ind": 2
+   },
+   {
+    "titulo": "Agilidade na Programação de Pagamento diário/mensal",
+    "itens": [
+     "Porcentagem de pagamentos recorrentes programados até a data de vencimento",
+     "Número de inconsistências identificadas",
+     "Controle prévio das obrigações financeiras recorrentes",
+     "Conferência dos valores e documentos correspondentes",
+     "Antecipação de pagamentos em casos de finais de semana e feriados, quando necessário",
+     "Acompanhamento das obrigações mensais para evitar esquecimentos",
+     "Atualização do controle após programação ou pagamento",
+     "Programação de pagamentos de solicitações específicas direto para o financeiro",
+     "Tempo médio entre o recebimento da solicitação e o lançamento do pedido no sistema",
+     "Número de lançamentos realizados no período",
+     "Porcentagem de lançamentos corrigidos após conferência",
+     "Verificação da autorização necessária antes da programação",
+     "Confirmação da conclusão da demanda, quando aplicável",
+     "Registro e acompanhamento de todas as solicitações recebidas",
+     "Lançamento das despesas pagas do Pará e TO – Edwaldo",
+     "Tempo de lançamento entre o recebimento do documento e o registro no sistema",
+     "Número de divergências identificadas na conferência contábil",
+     "Identificação de comprovantes ou informações ausentes",
+     "Comunicação das divergências ao responsável"
+    ],
+    "ind": 4
+   },
+   {
+    "titulo": "Nível de engajamento com o Líder direto",
+    "itens": [
+     "Comunicação clara e assertiva com o líder",
+     "Entrosamento e relação de confiança com o líder direto",
+     "Receptividade às orientações e direcionamentos recebidos",
+     "Cumprimento dos acordos combinados estabelecidos pela liderança",
+     "Abertura para receber feedbacks e corrigir condutas quando necessário",
+     "Transparência na comunicação de problemas, dificuldades e ocorrências",
+     "Busca de alinhamento com o líder diante de dúvidas ou situações fora da rotina",
+     "Respeito à liderança, à hierarquia e às responsabilidades de cada função",
+     "Colaboração com o líder para o cumprimento das metas e demandas da fazenda",
+     "Comprometimento com as decisões tomadas após alinhamento com a liderança"
+    ],
+    "ind": 5
+   },
+   {
+    "titulo": "Proatividade / Iniciativa / Relação Interpessoal",
+    "itens": [
+     "Busca por entregar além das expectativas",
+     "Cooperação com o encarregado, líderes / gerência",
+     "Boa vontade em realizar o serviço",
+     "Iniciativa em propor algum serviço ou ideia",
+     "Envolvimento nas reciclagens e treinamentos",
+     "Busca pela execução sem depender de solicitações rotineiras"
+    ],
+    "ind": 7
+   },
+   {
+    "titulo": "Organização, Controle e Planejamento",
+    "itens": [
+     "Comunicação e atendimento às demandas internas",
+     "Organização das atividades conforme prioridades e vencimentos",
+     "Cumprimento dos prazos definidos pelo líder",
+     "Controle adequado das demandas pendentes",
+     "Acompanhamento das atividades até a conclusão",
+     "Capacidade de administrar demandas simultâneas sem perda de qualidade",
+     "Antecipação e comunicação de situações que possam gerar atraso",
+     "Manutenção de arquivos, controles e documentos de forma organizada",
+     "Comunicação clara, objetiva e respeitosa",
+     "Retorno às solicitações recebidas dentro do prazo adequado",
+     "Alinhamento com compras, liderança e demais áreas envolvidas",
+     "Comunicação imediata de inconsistências que possam comprometer pagamentos",
+     "Postura colaborativa na resolução de problemas"
+    ],
+    "ind": 9
+   },
+   {
+    "titulo": "Utilização das Ferramentas Tecnológicas",
+    "itens": [
+     "Utilizar os canais e plataformas presentes no celular",
+     "Interação na plataforma",
+     "Utilizar e responder dentro do prazo, por exemplo, pesquisas ou feedbacks",
+     "Ser honesto e verdadeiro nas respostas",
+     "Responder o painel de humor diariamente",
+     "Engajamento nos aplicativos",
+     "Boa aceitação das plataformas e tecnologias inseridas na operação",
+     "Priorizar a comunicação na plataforma",
+     "Fazer registros de reuniões na plataforma"
+    ],
+    "ind": 10
+   }
+  ],
+  "apresentacao": "Este documento estabelece os indicadores e critérios de avaliação da função de Analista Financeiro, com o objetivo de tornar as expectativas de desempenho claras, objetivas e acompanháveis. A avaliação considera aspectos comportamentais e técnicos próprios da função, incluindo cuidado pessoal, comportamento pessoal, classificação de notas fiscais de compras dentro da rotina estabelecida, agilidade na programação de pagamento diário/mensal. Os critérios abaixo deverão orientar os alinhamentos, feedbacks e o acompanhamento contínuo do desempenho, promovendo responsabilidade, desenvolvimento e consistência na execução das atividades."
+ },
+ {
+  "id": "analista-zootecnica",
+  "funcao": "Analista Zootécnica",
+  "pessoa": "Iasmim",
+  "lideres": [
+   "oswaldo"
+  ],
+  "indicadores": [
+   "Cuidado Pessoal",
+   "Comportamento Pessoal",
+   "Reciprocidade e Engajamento com o Diretor",
+   "Proatividade / Iniciativa / Relação Interpessoal",
+   "Planejamento / Organização / Controle / Qualidade nas informações lançadas",
+   "Metas alcançadas dentro do prazo",
+   "Inovação / Novas Soluções / Processos / Automação / Capacidade de adquirir conhecimento",
+   "Movimentação do manejo de gado instantaneamente no sistema / Engajamento da Equipe de Manejo",
+   "Liderança",
+   "Utilização das Ferramentas Tecnológicas"
+  ],
+  "secoes": [
+   {
+    "titulo": "Cuidado Pessoal",
+    "itens": [
+     "Boa aparência",
+     "Bem-vestida / uniforme",
+     "Uniforme limpo e passado",
+     "Calçado limpo e de boa aparência",
+     "Calçado correto",
+     "Cabelo penteado",
+     "Higiene pessoal / cheiro",
+     "Cuidados com a saúde – médicos e exames em dia",
+     "Higiene bucal",
+     "Boa presença"
+    ],
+    "ind": 1
+   },
+   {
+    "titulo": "Comportamento Pessoal",
+    "itens": [
+     "Comportamento durante o trabalho",
+     "Tratativa com os colegas de trabalho",
+     "Relação interpessoal",
+     "Com o líder – respeito / reciprocidade",
+     "Aceitação na escuta e feedback",
+     "Comportamento com a família / amigos",
+     "Comportamento fora do ciclo do trabalho",
+     "Vícios",
+     "Saúde mental",
+     "Saúde financeira – adiantamento (20%) e empréstimos",
+     "Diálogo e abertura para ouvir os colegas",
+     "Proatividade e iniciativa",
+     "Busca por conhecimento e aprendizado",
+     "Pontualidade"
+    ],
+    "ind": 2
+   },
+   {
+    "titulo": "Proatividade / Iniciativa / Relação Interpessoal",
+    "itens": [
+     "Busca por entregar além das expectativas",
+     "Cooperação com o encarregado, líderes / gerência",
+     "Boa vontade em realizar o serviço",
+     "Iniciativa em propor algum serviço ou ideia",
+     "Envolvimento nas reciclagens e treinamentos",
+     "Busca pela execução sem depender de solicitações rotineiras"
+    ],
+    "ind": 4
+   },
+   {
+    "titulo": "Nível de engajamento com a diretoria",
+    "itens": [
+     "Comunicação clara e assertiva com o líder",
+     "Entrosamento e relação de confiança com o líder direto",
+     "Receptividade às orientações e direcionamentos recebidos",
+     "Cumprimento dos acordos combinados estabelecidos pela liderança",
+     "Abertura para receber feedbacks e corrigir condutas quando necessário",
+     "Transparência na comunicação de problemas, dificuldades e ocorrências",
+     "Busca de alinhamento com o líder diante de dúvidas ou situações fora da rotina",
+     "Respeito à liderança, à hierarquia e às responsabilidades de cada função",
+     "Colaboração com o líder para o cumprimento das metas e demandas da fazenda",
+     "Comprometimento com as decisões tomadas após alinhamento com a liderança"
+    ],
+    "ind": 3
+   },
+   {
+    "titulo": "Liderança",
+    "itens": [
+     "Capacidade de engajamento dos liderados",
+     "Habilidade na comunicação com liderados e outras equipes",
+     "Habilidade de comunicação com os outros líderes da mesma função",
+     "Comunicar ao departamento de Gestão de Pessoas as ocorrências relacionadas ao seu setor",
+     "Respeitar os liderados – sem piadas e brincadeiras de mau gosto",
+     "Feedbacks aos liderados com frequência e de forma individual",
+     "Proatividade e iniciativa",
+     "Reuniões de alinhamento semanais",
+     "Planejamento e execução semanal",
+     "Uso correto do rádio",
+     "Aceitação dos feedbacks dos liderados",
+     "Aceitação ou consideração de maneira positiva das sugestões dos liderados (melhorias e ajustes de conduta)"
+    ],
+    "ind": 9
+   },
+   {
+    "titulo": "Utilização das Ferramentas Tecnológicas",
+    "itens": [
+     "Utilizar os canais e plataformas presentes no celular",
+     "Interação na plataforma",
+     "Utilizar e responder dentro do prazo, por exemplo, pesquisas ou feedbacks",
+     "Ser honesto e verdadeiro nas respostas",
+     "Responder o painel de humor diariamente",
+     "Engajamento nos aplicativos",
+     "Boa aceitação das plataformas e tecnologias inseridas na operação",
+     "Priorizar a comunicação na plataforma",
+     "Fazer registros de reuniões na plataforma",
+     "Solicitar e enviar feedback aos colegas e à gestão"
+    ],
+    "ind": 10
+   }
+  ],
+  "apresentacao": "Este documento estabelece os indicadores e critérios de avaliação da função de Analista Zootécnica, com o objetivo de tornar as expectativas de desempenho claras, objetivas e acompanháveis. A avaliação considera aspectos comportamentais e técnicos próprios da função, incluindo cuidados pessoais, comportamento pessoal, reciprocidade e engajamento com o diretor, proatividade/iniciativa/relação interpessoal. Os critérios abaixo deverão orientar os alinhamentos, feedbacks e o acompanhamento contínuo do desempenho, promovendo responsabilidade, desenvolvimento e consistência na execução das atividades."
+ },
+ {
+  "id": "assessora-executiva",
+  "funcao": "Assessora Executiva",
+  "pessoa": "Geice",
+  "lideres": [
+   "oswaldo"
+  ],
+  "indicadores": [
+   "Cuidado Pessoal",
+   "Comportamento Pessoal",
+   "Qualidade na Gestão e Organização da Agenda Executiva",
+   "Qualidade na dinâmica das tratativas com o Diretor",
+   "Resolutividade e Gestão de Imprevistos / Antecipação de Necessidade e Proatividade",
+   "Agilidade nas demandas obedecendo critérios de prioridades",
+   "Qualidade na Postura e Comunicação",
+   "Inovação / Novas Soluções / Processos / Automação",
+   "Responsabilidade e Engajamento com a Diretoria",
+   "Uso das Ferramentas Tecnológicas"
+  ],
+  "secoes": [
+   {
+    "titulo": "Cuidado Pessoal",
+    "itens": [
+     "Boa aparência",
+     "Bem-vestida / uniforme",
+     "Uniforme limpo e passado",
+     "Calçado limpo e de boa aparência",
+     "Calçado correto",
+     "Cabelo penteado",
+     "Higiene pessoal / cheiro",
+     "Cuidados com a saúde – médicos e exames em dia",
+     "Higiene bucal",
+     "Boa presença"
+    ],
+    "ind": 1
+   },
+   {
+    "titulo": "Comportamento Pessoal",
+    "itens": [
+     "Respeito às normas, orientações e cultura da empresa",
+     "Comportamento durante o trabalho",
+     "Tratativa com os colegas de trabalho",
+     "Relação interpessoal",
+     "Com o líder – respeito / reciprocidade",
+     "Aceitação na escuta e feedback",
+     "Comportamento com a família / amigos",
+     "Comportamento fora do ciclo do trabalho",
+     "Vícios",
+     "Saúde mental",
+     "Saúde financeira – adiantamento (20%) e empréstimos",
+     "Diálogo e abertura para ouvir os colegas",
+     "Proatividade e iniciativa",
+     "Busca por conhecimento e aprendizado",
+     "Pontualidade"
+    ],
+    "ind": 2
+   },
+   {
+    "titulo": "Gestão e Organização da Agenda Executiva",
+    "itens": [
+     "Organização e atualização permanente da agenda",
+     "Controle de reuniões, compromissos, viagens e eventos",
+     "Prevenção de conflitos de horários",
+     "Confirmação antecipada dos compromissos",
+     "Organização das informações necessárias para cada agenda",
+     "Comunicação imediata de alterações",
+     "Capacidade de reorganizar a agenda diante de imprevistos"
+    ],
+    "ind": 3
+   },
+   {
+    "titulo": "Planejamento e Coordenação da Logística do Diretor",
+    "itens": [
+     "Planejamento antecipado dos deslocamentos",
+     "Organização de veículos, motoristas, passagens e hospedagens quando necessário",
+     "Definição e conferência de horários e rotas",
+     "Alinhamento com as pessoas envolvidas",
+     "Previsão de tempo adequado entre compromissos",
+     "Acompanhamento da logística até sua conclusão",
+     "Capacidade de solucionar rapidamente alterações e imprevistos da logística"
+    ]
+   },
+   {
+    "titulo": "Resolutividade e Gestão de Imprevistos / Antecipação de Necessidade e Proatividade",
+    "itens": [
+     "Capacidade de prever necessidades antes de serem solicitadas",
+     "Preparação antecipada para compromissos e viagens",
+     "Identificação de possíveis problemas de agenda ou logística",
+     "Apresentação de soluções e alternativas",
+     "Iniciativa compatível com sua autonomia",
+     "Redução da necessidade de cobranças e lembretes por parte do diretor",
+     "Capacidade de agir diante de cancelamentos, atrasos e mudanças",
+     "Rapidez na busca de alternativas",
+     "Autonomia para solucionar questões dentro de sua responsabilidade",
+     "Capacidade de manter organização e equilíbrio sob pressão",
+     "Comunicação tempestiva de problemas relevantes",
+     "Direcionamento correto das situações que dependem da decisão do diretor"
+    ],
+    "ind": 5
+   },
+   {
+    "titulo": "Gestão de Prioridade e Senso de Urgência",
+    "itens": [
+     "Capacidade de distinguir demandas urgentes, importantes e rotineiras",
+     "Organização das prioridades de acordo com as orientações do diretor",
+     "Rapidez diante de situações críticas",
+     "Capacidade de reprogramação quando surgem novas prioridades",
+     "Cumprimento das demandas sem perder atividades já programadas",
+     "Discernimento sobre o que precisa ser levado imediatamente ao diretor"
+    ]
+   },
+   {
+    "titulo": "Comunicação e Interface com Diretoria, Equipe e Terceiros",
+    "itens": [
+     "Comunicação clara, objetiva e profissional",
+     "Transmissão correta das orientações do diretor",
+     "Retorno adequado às pessoas que procuram a diretoria",
+     "Alinhamento eficiente com líderes, colaboradores, fornecedores e demais contatos",
+     "Confirmação de informações antes de repassá-las",
+     "Capacidade de representar adequadamente a diretoria nas tratativas sob sua responsabilidade"
+    ]
+   },
+   {
+    "titulo": "Organização, Confiabilidade e Atenção aos Detalhes / Confidencialidade, Discrição e Ética Profissional",
+    "itens": [
+     "Precisão em datas, horários, nomes, endereços e informações",
+     "Conferência das programações antes da execução",
+     "Organização de documentos e informações",
+     "Baixo índice de erros e retrabalho",
+     "Cuidado com alterações de última hora; capacidade de manter informações atualizadas e facilmente acessíveis",
+     "Preservação das informações confidenciais da diretoria e da empresa",
+     "Discrição sobre assuntos pessoais e profissionais do diretor",
+     "Cuidado com documentos, conversas e informações estratégicas",
+     "Respeito aos limites de acesso às informações",
+     "Postura ética diante de situações sensíveis",
+     "Confiabilidade no tratamento de assuntos reservados",
+     "Postura compatível com a proximidade e confiança inerentes à função",
+     "Cordialidade e respeito no relacionamento interpessoal",
+     "Responsabilidade e comprometimento",
+     "Maturidade profissional",
+     "Equilíbrio na interação com diferentes níveis hierárquicos",
+     "Apresentação e comportamento adequados aos ambientes em que representa ou acompanha a diretoria"
+    ]
+   },
+   {
+    "titulo": "Acompanhamento / Controle das Demandas da Diretoria",
+    "itens": [
+     "Registro das solicitações e decisões",
+     "Acompanhamento das demandas até sua conclusão",
+     "Realização de follow-up com os responsáveis",
+     "Controle de prazos e pendências",
+     "Cobrança adequada de retornos",
+     "Atualização do diretor sobre assuntos relevantes",
+     "Garantia de que demandas delegadas não sejam esquecidas"
+    ]
+   },
+   {
+    "titulo": "Uso das Ferramentas Tecnológicas",
+    "itens": [
+     "Utilizar os canais e plataformas presentes no celular",
+     "Interação na plataforma",
+     "Utilizar e responder dentro do prazo, por exemplo, pesquisas ou feedbacks",
+     "Ser honesto e verdadeiro nas respostas",
+     "Responder o painel de humor diariamente",
+     "Engajamento nos aplicativos",
+     "Boa aceitação das plataformas e tecnologias inseridas na operação",
+     "Priorizar a comunicação na plataforma",
+     "Fazer registros de reuniões na plataforma"
+    ],
+    "ind": 10
+   }
+  ],
+  "apresentacao": "Este documento estabelece os indicadores e critérios de avaliação da função de Assessora Executiva, com o objetivo de tornar as expectativas de desempenho claras, objetivas e acompanháveis. A avaliação considera aspectos comportamentais e técnicos próprios da função, incluindo cuidado pessoal, comportamento pessoal, qualidade na gestão e organização da agenda executiva, qualidade na dinâmica das tratativas com o diretor. Os critérios abaixo deverão orientar os alinhamentos, feedbacks e o acompanhamento contínuo do desempenho, promovendo responsabilidade, desenvolvimento e consistência na execução das atividades."
+ },
+ {
+  "id": "auxiliar-encarregado",
+  "funcao": "Auxiliar do Encarregado",
+  "pessoa": null,
+  "lideres": [
+   "encarregado",
+   "jeovane"
+  ],
+  "indicadores": [
+   "Cuidado Pessoal",
+   "Comportamento Pessoal",
+   "Sanidade do Animal / Mortalidade / Boas práticas com o animal",
+   "Lavagem dos Bebedouros e Manutenção do Sal",
+   "Manutenção e Execução da Estrutura",
+   "Manejo do Pasto",
+   "Organização e Limpeza",
+   "Proatividade / Iniciativa / Relação Interpessoal",
+   "Nível de engajamento com o Líder direto – encarregado",
+   "Uso das Ferramentas Tecnológicas"
+  ],
+  "secoes": [
+   {
+    "titulo": "Cuidado Pessoal",
+    "itens": [
+     "Boa aparência",
+     "Bem-vestida / uniforme",
+     "Uniforme limpo e passado",
+     "Calçado limpo e de boa aparência",
+     "Calçado correto",
+     "Cabelo penteado",
+     "Higiene pessoal / cheiro",
+     "Cuidados com a saúde – médicos e exames em dia",
+     "Higiene bucal",
+     "Boa presença"
+    ],
+    "ind": 1
+   },
+   {
+    "titulo": "Comportamento Pessoal",
+    "itens": [
+     "Respeito às normas, orientações e cultura da empresa",
+     "Comportamento durante o trabalho",
+     "Tratativa com os colegas de trabalho",
+     "Relação interpessoal",
+     "Com os líderes – respeito / reciprocidade",
+     "Aceitação na escuta e feedback",
+     "Comportamento com a família / amigos",
+     "Comportamento fora do ciclo do trabalho",
+     "Vícios",
+     "Saúde mental",
+     "Saúde financeira – adiantamento (20%) e empréstimos",
+     "Diálogo e abertura para ouvir os colegas",
+     "Proatividade e iniciativa",
+     "Busca por conhecimento e aprendizado",
+     "Pontualidade"
+    ],
+    "ind": 2
+   },
+   {
+    "titulo": "Sanidade do Animal / Mortalidade / Boas práticas com o animal",
+    "itens": [
+     "Auxiliar a conferência do lote total para verificação de animais que possivelmente precisam ser medicados",
+     "Auxiliar a realizar medicação imediata, a tempo e hora",
+     "Auxiliar o uso da medicação da maneira correta",
+     "Reportar ao encarregado a necessidade de reposição de medicação dos animais",
+     "Uso correto do laço",
+     "Não utilização de materiais proibidos pela fazenda, por exemplo, pinhola",
+     "Comportamento no pasto e no curral, por exemplo, xingamentos, gritos inadequados, agressão aos animais de forma desnecessária (bater no boi fora do contexto)",
+     "Forma racional de manejar os animais no curral",
+     "Auxiliar no armazenamento das medicações de forma adequada",
+     "Interesse em se conectar com os animais, bom envolvimento e interação",
+     "Zelo com a tropa – tosa frequente, casqueamento, lavar a tropa após a rodada. Não utilizar maus-tratos (esporas que cortam) ou agressões desnecessárias",
+     "Avaliação do score de fezes e reportar ao encarregado"
+    ],
+    "ind": 3
+   },
+   {
+    "titulo": "Lavagem dos Bebedouros e Manutenção do Sal",
+    "itens": [
+     "Frequência diária da limpeza dos bebedouros",
+     "Reposição do sal mineral de forma adequada",
+     "Mexer o sal diariamente, por exemplo, quebrar os torrões e misturar o sal velho com o novo quando necessário",
+     "Auxiliar no cálculo do consumo de sal mineral semanalmente – atualizar o consumo do sal mineral",
+     "Evitar desperdício do sal mineral",
+     "Remover o sal mineral quando ocorrer a retirada dos animais do pasto",
+     "Auxiliar no controle do estoque – reportar reposição dentro do prazo adequado ao encarregado",
+     "Armazenamento adequado do sal mineral (sacaria), tanto no barracão quanto nos contêineres",
+     "Organização da sacaria usada",
+     "Fornecimento do proteinado no horário previamente acordado"
+    ],
+    "ind": 4
+   },
+   {
+    "titulo": "Manutenção e Execução da Estrutura",
+    "itens": [
+     "Reportar ao encarregado sobre a manutenção de cochos e bebedouros – reposição ou reparo se necessário",
+     "Reportar as condições de cercas – reposição de estacas quebradas, arames esticados, colchetes em condições de uso, choques com potência adequada, porteiras em condições adequadas",
+     "Reportar sobre a manutenção de bebedouros e cochos cascalhados",
+     "Reportar sobre a manutenção da pintura de porteiras e cercas",
+     "Curral – limpeza após uso, troca de tábuas quebradas, reparos diversos feitos no prazo adequado",
+     "Acompanhar a manutenção de toda a estrutura, desde barracões, currais e outros",
+     "Acompanhar e realizar a manutenção do reservatório de água"
+    ],
+    "ind": 5
+   },
+   {
+    "titulo": "Manejo de Pasto",
+    "itens": [
+     "Identificar e reportar cigarrinhas ou lagartas",
+     "Identificar e reportar áreas com invasoras que necessitam de aplicação de herbicida",
+     "Identificar e reportar troca de piquete ou ajuste de lotação animal",
+     "Identificar e reportar a condição da pastagem",
+     "Sugestão ao encarregado sobre manejos, priorizando o aproveitamento dos piquetes em melhor condição",
+     "Auxiliar o acompanhamento da adubação dos pastos"
+    ],
+    "ind": 6
+   },
+   {
+    "titulo": "Organização e Limpeza",
+    "itens": [
+     "Após toda utilização do curral, fazer a limpeza do curral, lavar as seringas e armazenar as medicações nos locais corretos",
+     "Destinação dos frascos, embalagens e medicamentos no lixo",
+     "Destinação semanal do lixo da fazenda para o lixão",
+     "Auxiliar a organização da farmácia e das tralhas de arreios e outros",
+     "Destinação de cada ferramenta aos locais certos",
+     "Auxiliar na organização de sacarias de sal, proteinado e bags de adubo",
+     "Auxiliar na limpeza e conservação das tralhas de arreio",
+     "Manutenção de todos os ambientes – lavados e organizados",
+     "Auxiliar a manter os banheiros de uso coletivo limpos – comunicar ao encarregado",
+     "Limpeza e conservação da moradia"
+    ],
+    "ind": 7
+   },
+   {
+    "titulo": "Proatividade / Iniciativa / Relação Interpessoal",
+    "itens": [
+     "Busca por entregar além das expectativas",
+     "Cooperação com o encarregado, líderes / gerência",
+     "Boa vontade em realizar o serviço",
+     "Iniciativa em propor algum serviço ou ideia",
+     "Envolvimento nas reciclagens e treinamentos",
+     "Busca pela execução sem depender de solicitações rotineiras"
+    ],
+    "ind": 8
+   },
+   {
+    "titulo": "Nível de engajamento com o Líder direto – encarregado",
+    "itens": [
+     "Comunicação clara e assertiva com o líder",
+     "Entrosamento e relação de confiança com o líder direto",
+     "Receptividade às orientações e direcionamentos recebidos",
+     "Cumprimento dos acordos combinados estabelecidos pela liderança",
+     "Abertura para receber feedbacks e corrigir condutas quando necessário",
+     "Transparência na comunicação de problemas, dificuldades e ocorrências",
+     "Busca de alinhamento com o líder diante de dúvidas ou situações fora da rotina",
+     "Respeito à liderança, à hierarquia e às responsabilidades de cada função",
+     "Colaboração com o líder para o cumprimento das metas e demandas da fazenda",
+     "Comprometimento com as decisões tomadas após alinhamento com a liderança"
+    ],
+    "ind": 9
+   },
+   {
+    "titulo": "Uso das Ferramentas Tecnológicas",
+    "itens": [
+     "Utilizar os canais e plataformas presentes no celular",
+     "Interação na plataforma",
+     "Utilizar e responder dentro do prazo, por exemplo, pesquisas ou feedbacks",
+     "Ser honesto e verdadeiro nas respostas",
+     "Responder o painel de humor diariamente",
+     "Engajamento nos aplicativos",
+     "Boa aceitação das plataformas e tecnologias inseridas na operação",
+     "Priorizar a comunicação na plataforma",
+     "Fazer registros de reuniões na plataforma",
+     "Solicitar e enviar feedback aos colegas e à gestão"
+    ],
+    "ind": 10
+   }
+  ],
+  "apresentacao": "Este documento estabelece os indicadores e critérios de avaliação da função de Auxiliar do Encarregado, com o objetivo de tornar as expectativas de desempenho claras, objetivas e acompanháveis. A avaliação considera aspectos comportamentais e técnicos próprios da função, incluindo cuidado pessoal, comportamento pessoal, sanidade do animal / mortalidade / boas práticas com o animal, lavagem de bebedouros e manutenção do sal. Os critérios abaixo deverão orientar os alinhamentos, feedbacks e o acompanhamento contínuo do desempenho, promovendo responsabilidade, desenvolvimento e consistência na execução das atividades."
+ },
+ {
+  "id": "caseiro",
+  "funcao": "Caseiro",
+  "pessoa": null,
+  "lideres": [
+   "luciano",
+   "alessandro",
+   "jeovane"
+  ],
+  "indicadores": [
+   "Cuidado Pessoal",
+   "Comportamento Pessoal",
+   "Manutenção do Jardim",
+   "Limpeza das Calçadas / Limpeza e Estética Geral",
+   "Manutenção de Pinturas e Cercas",
+   "Manutenção da Piscina e Rego d’água",
+   "Organização das Ferramentas / Manutenção de Maquinários",
+   "Reportação de Manutenções e Ocorrências ao Zelador",
+   "Atenção e Acolhimento",
+   "Utilização das Ferramentas Tecnológicas"
+  ],
+  "secoes": [
+   {
+    "titulo": "Cuidado Pessoal",
+    "itens": [
+     "Boa aparência",
+     "Bem-vestido / uniforme",
+     "Uniforme limpo e passado",
+     "Calçado limpo e de boa aparência",
+     "Calçado correto",
+     "Barba feita",
+     "Cabelo cortado / penteado",
+     "Higiene pessoal / cheiro",
+     "Cuidados com a saúde – médicos e exames em dia",
+     "Higiene bucal",
+     "Boa presença"
+    ],
+    "ind": 1
+   },
+   {
+    "titulo": "Comportamento Pessoal",
+    "itens": [
+     "Respeito às normas, orientações e cultura da empresa",
+     "Comportamento durante o trabalho",
+     "Tratativa com os colegas de trabalho",
+     "Relação interpessoal",
+     "Com o líder – respeito / reciprocidade",
+     "Aceitação na escuta e feedback",
+     "Comportamento com a família / amigos",
+     "Comportamento fora do ciclo do trabalho",
+     "Vícios",
+     "Saúde mental",
+     "Saúde financeira – adiantamento (20%) e empréstimos",
+     "Diálogo e abertura para ouvir os colegas",
+     "Proatividade e iniciativa",
+     "Busca por conhecimento e aprendizado",
+     "Pontualidade",
+     "Uso do celular em excesso"
+    ],
+    "ind": 2
+   },
+   {
+    "titulo": "Manutenção do Jardim",
+    "itens": [
+     "Gramado cortado padronizado",
+     "Condição do gramado",
+     "Acabamentos",
+     "Recolhimento da grama",
+     "Gramado uniforme em toda a extensão",
+     "Verificar insetos / aplicação do veneno",
+     "Limpeza do gramado",
+     "Verde por completo – manejo de irrigação",
+     "Manejo da mangueira"
+    ],
+    "ind": 3
+   },
+   {
+    "titulo": "Limpeza das Calçadas / Limpeza e Estética Geral",
+    "itens": [
+     "Lavagem das calçadas com os produtos corretos",
+     "Estética das calçadas",
+     "Remoção dos matos e gramas",
+     "Varrer calçadas – verificação da limpeza geral (folhas / sujeira)",
+     "Contexto geral",
+     "Ao redor da sede",
+     "Pintura",
+     "Visualização geral",
+     "Estética agradável",
+     "Organização"
+    ],
+    "ind": 4
+   },
+   {
+    "titulo": "Manutenção de Pintura e Cercas",
+    "itens": [
+     "Aspecto geral da cerca",
+     "Manutenção da pintura da cerca",
+     "Manutenção da pintura dos portões e porteira",
+     "Manutenção das tábuas"
+    ],
+    "ind": 5
+   },
+   {
+    "titulo": "Manutenção da Piscina e Rego d’água",
+    "itens": [
+     "Aspecto da condição da piscina",
+     "Limpa – aspecto da cor da água",
+     "Altura da água",
+     "Limpeza das bordas",
+     "Manutenção da piscina",
+     "Utilização / retirada da lona",
+     "Manutenção do rego d’água",
+     "Manutenção das caixas"
+    ],
+    "ind": 6
+   },
+   {
+    "titulo": "Organização das Ferramentas / Manutenção de Maquinários",
+    "itens": [
+     "Organização do almoxarifado das ferramentas",
+     "Organização dos produtos",
+     "Reportar reposição do almoxarifado",
+     "Manutenção das ferramentas quando necessário / diária",
+     "Não ter recorrência de problemas nos maquinários",
+     "Limpeza dos equipamentos",
+     "Após o término, limpar e guardar no lugar"
+    ],
+    "ind": 7
+   },
+   {
+    "titulo": "Reportação de Manutenções e Ocorrências ao Zelador",
+    "itens": [
+     "Reportar ao zelador todos os serviços que não podem ser executados por ele",
+     "Reportar material ou ferramentas que faltam",
+     "Conferência de material / produtos / manutenção",
+     "Conferência da parte elétrica, hidráulica e eletrônicos",
+     "Reportação e controle de visitas ao zelador"
+    ],
+    "ind": 8
+   },
+   {
+    "titulo": "Atenção e Acolhimento",
+    "itens": [
+     "Boa recepção de quem chegar na fazenda",
+     "Acolhimento",
+     "Educação",
+     "Receber imediatamente",
+     "Atenção à porta – segurança do local",
+     "Sorriso e simpatia",
+     "Organização",
+     "Sigilo com o que escuta – não passar os assuntos para frente / fofocas",
+     "Postura",
+     "Receptividade / simpatia",
+     "Boa vontade e proatividade",
+     "Respeito com qualquer pessoa que chegar"
+    ],
+    "ind": 9
+   },
+   {
+    "titulo": "Utilização das Ferramentas Tecnológicas",
+    "itens": [
+     "Responder o painel de humor diariamente",
+     "Interagir na plataforma",
+     "Engajamento nos aplicativos",
+     "Boa aceitação das plataformas e tecnologias inseridas na operação",
+     "Priorizar a comunicação na plataforma",
+     "Fazer registros de reuniões na plataforma",
+     "Solicitar e enviar feedback aos colegas e à gestão"
+    ],
+    "ind": 10
+   }
+  ],
+  "apresentacao": "Este documento estabelece os indicadores e critérios de avaliação da função de Caseiro, com o objetivo de tornar as expectativas de desempenho claras, objetivas e acompanháveis. A avaliação considera aspectos comportamentais e técnicos próprios da função, incluindo cuidado pessoal, comportamento pessoal, manutenção do jardim, limpeza das calçadas / limpeza e estética geral. Os critérios abaixo deverão orientar os alinhamentos, feedbacks e o acompanhamento contínuo do desempenho, promovendo responsabilidade, desenvolvimento e consistência na execução das atividades."
+ },
+ {
+  "id": "coord-operacoes-externas",
+  "funcao": "Coordenador de Operações Externas",
+  "pessoa": "Lucas",
+  "lideres": [
+   "oswaldo"
+  ],
+  "indicadores": [
+   "Cuidados Pessoais",
+   "Comportamento Pessoal",
+   "Visão / Planejamento / Controle / Relatórios e Gestão das Prioridades",
+   "Nível de engajamento com o Diretor",
+   "Metas alcançadas dentro do prazo",
+   "Capacidade de buscar soluções mediante custo-benefício das demandas externas solicitadas",
+   "Liderança",
+   "Qualidade no acompanhamento e conclusão das demandas",
+   "Proatividade / Iniciativa e Relacionamento Interpessoal",
+   "Utilização das Ferramentas Tecnológicas"
+  ],
+  "secoes": [
+   {
+    "titulo": "Cuidado Pessoal",
+    "itens": [
+     "Boa aparência",
+     "Bem-vestida / uniforme",
+     "Uniforme limpo e passado",
+     "Calçado limpo e de boa aparência",
+     "Calçado correto",
+     "Cabelo penteado",
+     "Higiene pessoal / cheiro",
+     "Cuidados com a saúde – médicos e exames em dia",
+     "Higiene bucal",
+     "Boa presença"
+    ],
+    "ind": 1
+   },
+   {
+    "titulo": "Comportamento Pessoal",
+    "itens": [
+     "Comportamento durante o trabalho",
+     "Tratativa com os colegas de trabalho",
+     "Relação interpessoal",
+     "Com o líder – respeito / reciprocidade",
+     "Aceitação na escuta e feedback",
+     "Comportamento com a família / amigos",
+     "Comportamento fora do ciclo do trabalho",
+     "Vícios",
+     "Saúde mental",
+     "Saúde financeira – adiantamento (20%) e empréstimos",
+     "Diálogo e abertura para ouvir os colegas",
+     "Proatividade e iniciativa",
+     "Busca por conhecimento e aprendizado",
+     "Pontualidade"
+    ],
+    "ind": 2
+   },
+   {
+    "titulo": "Liderança",
+    "itens": [
+     "Capacidade de engajamento dos liderados",
+     "Habilidade na comunicação com liderados e outras equipes",
+     "Habilidade de comunicação com os outros líderes / gerentes / diretoria",
+     "Comunicar ao departamento de Gestão de Pessoas as ocorrências relacionadas ao seu setor",
+     "Respeitar os liderados – sem piadas e brincadeiras de mau gosto",
+     "Feedbacks aos liderados com frequência e de forma individual",
+     "Proatividade e iniciativa",
+     "Reuniões de alinhamento semanais com o líder e com os liderados",
+     "Planejamento e execução semanal",
+     "Uso correto do rádio"
+    ],
+    "ind": 7
+   },
+   {
+    "titulo": "Proatividade / Iniciativa e Relacionamento Interpessoal",
+    "itens": [
+     "Busca por entregar além das expectativas",
+     "Engajamento com o líder direto / gerência",
+     "Boa vontade em realizar o serviço",
+     "Iniciativa em propor algum serviço e ideia",
+     "Envolvimento nos treinamentos",
+     "Busca pela execução sem depender de solicitações rotineiras",
+     "Bom relacionamento com os liderados"
+    ],
+    "ind": 9
+   },
+   {
+    "titulo": "Utilização das Ferramentas Tecnológicas",
+    "itens": [
+     "Utilizar os canais e plataformas presentes no celular",
+     "Interação na plataforma",
+     "Utilizar e responder dentro do prazo, por exemplo, pesquisas ou feedbacks",
+     "Ser honesto e verdadeiro nas respostas",
+     "Responder o painel de humor diariamente",
+     "Engajamento nos aplicativos",
+     "Boa aceitação das plataformas e tecnologias inseridas na operação",
+     "Priorizar a comunicação na plataforma",
+     "Fazer registros de reuniões na plataforma",
+     "Solicitar e enviar feedback aos colegas e à gestão"
+    ],
+    "ind": 10
+   },
+   {
+    "titulo": "Visão / Planejamento / Controle e Relatórios de Gestão das Prioridades",
+    "itens": [
+     "Ter uma visão criteriosa dos serviços executados",
+     "Planejamento semanal das atividades",
+     "Relatório do Planejado x Realizado",
+     "Estabelecer prioridades junto à Diretoria / Gerência",
+     "Alinhamento semanal das atividades",
+     "Controle e acompanhamento das demandas por escrito",
+     "Planejamento diário com a equipe terceirizada",
+     "Avaliação da entrega da equipe terceirizada"
+    ],
+    "ind": 3
+   },
+   {
+    "titulo": "Nível de engajamento com o Diretor",
+    "itens": [
+     "Comunicação clara e assertiva com o líder",
+     "Entrosamento e relação de confiança com o líder direto",
+     "Receptividade às orientações e direcionamentos recebidos",
+     "Cumprimento dos acordos combinados estabelecidos pela liderança",
+     "Abertura para receber feedbacks e corrigir condutas quando necessário",
+     "Transparência na comunicação de problemas, dificuldades e ocorrências",
+     "Busca de alinhamento com o líder diante de dúvidas ou situações fora da rotina",
+     "Respeito à liderança, à hierarquia e às responsabilidades de cada função",
+     "Colaboração com o líder para o cumprimento das metas e demandas da fazenda",
+     "Comprometimento com as decisões tomadas após alinhamento com a liderança"
+    ],
+    "ind": 4
+   }
+  ],
+  "apresentacao": "Este documento estabelece os indicadores e critérios de avaliação da função de Coordenador de Operações Externas, com o objetivo de tornar as expectativas de desempenho claras, objetivas e acompanháveis. A avaliação considera aspectos comportamentais e técnicos próprios da função, incluindo cuidados pessoais, comportamento pessoal, visão / planejamento / controle / relatórios e gestão das prioridades, nível de engajamento com o diretor. Os critérios abaixo deverão orientar os alinhamentos, feedbacks e o acompanhamento contínuo do desempenho, promovendo responsabilidade, desenvolvimento e consistência na execução das atividades."
+ },
+ {
+  "id": "coord-compras",
+  "funcao": "Coordenadora de Compras e Logística",
+  "pessoa": "Ludmilla",
+  "lideres": [
+   "oswaldo"
+  ],
+  "indicadores": [
+   "Cuidado Pessoal",
+   "Comportamento Pessoal",
+   "Metas e Demandas Alcançadas dentro do Prazo",
+   "Gestão e Planejamento das Demandas",
+   "Proatividade / Iniciativa / Relação Interpessoal",
+   "Liderança",
+   "Negociação e Entrega Econômica",
+   "Inovação / Novas Soluções / Processos / Automação",
+   "Reciprocidade e Engajamento com a Diretoria",
+   "Uso das Ferramentas Tecnológicas"
+  ],
+  "secoes": [
+   {
+    "titulo": "Cuidado Pessoal",
+    "itens": [
+     "Boa aparência",
+     "Bem-vestida / uniforme",
+     "Uniforme limpo e passado",
+     "Calçado limpo e de boa aparência",
+     "Calçado correto",
+     "Cabelo penteado",
+     "Higiene pessoal / cheiro",
+     "Cuidados com a saúde – médicos e exames em dia",
+     "Higiene bucal",
+     "Boa presença"
+    ],
+    "ind": 1
+   },
+   {
+    "titulo": "Comportamento Pessoal",
+    "itens": [
+     "Respeito às normas, orientações e cultura da empresa",
+     "Comportamento durante o trabalho",
+     "Tratativa com os colegas de trabalho",
+     "Relação interpessoal",
+     "Com o líder – respeito / reciprocidade",
+     "Aceitação na escuta e feedback",
+     "Comportamento com a família / amigos",
+     "Comportamento fora do ciclo do trabalho",
+     "Vícios",
+     "Saúde mental",
+     "Saúde financeira – adiantamento (20%) e empréstimos",
+     "Diálogo e abertura para ouvir os colegas",
+     "Proatividade e iniciativa",
+     "Busca por conhecimento e aprendizado",
+     "Pontualidade"
+    ],
+    "ind": 2
+   },
+   {
+    "titulo": "Metas e Demandas Alcançadas dentro do Prazo",
+    "itens": [
+     "Estabelecimento de metas claras dentro do sistema",
+     "Execução conforme planejado",
+     "Avaliação do impacto caso o planejado não seja cumprido"
+    ],
+    "ind": 3
+   },
+   {
+    "titulo": "Gestão e Planejamento das Demandas",
+    "itens": [
+     "Programação completa das demandas lançadas dentro do sistema",
+     "Estabelecimento do prazo de cumprimento das demandas conforme prioridades",
+     "Qualidade na categorização das prioridades baixa, média e alta",
+     "Qualidade no formato de despacho das demandas com o diretor",
+     "Qualidade na eficiência da logística de entrega",
+     "Gestão do almoxarifado",
+     "Qualidade na conferência do almoxarifado antes da realização de compras"
+    ],
+    "ind": 4
+   },
+   {
+    "titulo": "Proatividade / Iniciativa / Relação Interpessoal",
+    "itens": [
+     "Busca por entregar além das expectativas",
+     "Cooperação com o encarregado, líderes / gerência",
+     "Boa vontade em realizar o serviço",
+     "Iniciativa em propor algum serviço ou ideia",
+     "Envolvimento nas reciclagens e treinamentos",
+     "Busca pela execução sem depender de solicitações rotineiras"
+    ],
+    "ind": 5
+   },
+   {
+    "titulo": "Liderança",
+    "itens": [
+     "Capacidade de engajamento dos liderados",
+     "Habilidade na comunicação com liderados e outras equipes",
+     "Habilidade de comunicação com os outros líderes / gerentes / diretoria",
+     "Comunicar ao departamento de Gestão de Pessoas as ocorrências relacionadas ao seu setor",
+     "Respeitar os liderados – sem piadas e brincadeiras de mau gosto",
+     "Feedbacks aos liderados com frequência e de forma individual",
+     "Proatividade e iniciativa",
+     "Reuniões de alinhamento semanais com o seu líder e com os liderados",
+     "Planejamento e execução semanal",
+     "Uso correto do rádio"
+    ],
+    "ind": 6
+   },
+   {
+    "titulo": "Negociação e Entrega Econômica",
+    "itens": [
+     "Qualidade das práticas de negociação",
+     "Avaliação dos valores nominais de economia gerados em relação ao preço mínimo à vista",
+     "Impacto econômico gerado nas negociações",
+     "Qualidade na absorção das orientações da diretoria",
+     "Relacionamento e feedback com os fornecedores"
+    ],
+    "ind": 7
+   },
+   {
+    "titulo": "Inovação / Novas Soluções / Processos / Automação",
+    "itens": [
+     "Introdução de inovações e ferramentas que gerem valor às atividades exercidas",
+     "Soluções que otimizem o tempo",
+     "Criação de processos que elevem a qualidade das informações e a agilidade",
+     "Busca em trazer referências de fora",
+     "Utilização da IA e das plataformas"
+    ],
+    "ind": 8
+   },
+   {
+    "titulo": "Reciprocidade e Engajamento com a Diretoria",
+    "itens": [
+     "Comunicação clara e assertiva com o líder",
+     "Entrosamento e relação de confiança com o líder direto",
+     "Receptividade às orientações e direcionamentos recebidos",
+     "Cumprimento dos acordos combinados estabelecidos pela liderança",
+     "Abertura para receber feedbacks e corrigir condutas quando necessário",
+     "Transparência na comunicação de problemas, dificuldades e ocorrências",
+     "Busca de alinhamento com o líder diante de dúvidas ou situações fora da rotina",
+     "Respeito à liderança, à hierarquia e às responsabilidades de cada função",
+     "Colaboração com o líder para o cumprimento das metas e demandas da fazenda",
+     "Comprometimento com as decisões tomadas após alinhamento com a liderança",
+     "Senso de pertencimento",
+     "Produtividade nas reuniões",
+     "Alinhamento de ideias e raciocínio",
+     "Articulação coerente com a visão da Diretoria",
+     "Busca por gerar resultados"
+    ],
+    "ind": 9
+   },
+   {
+    "titulo": "Uso das Ferramentas Tecnológicas",
+    "itens": [
+     "Utilizar os canais e plataformas presentes no celular",
+     "Interação na plataforma",
+     "Utilizar e responder dentro do prazo, por exemplo, pesquisas ou feedbacks",
+     "Ser honesto e verdadeiro nas respostas",
+     "Responder o painel de humor diariamente",
+     "Engajamento nos aplicativos",
+     "Boa aceitação das plataformas e tecnologias inseridas na operação",
+     "Priorizar a comunicação na plataforma",
+     "Fazer registros de reuniões na plataforma"
+    ],
+    "ind": 10
+   }
+  ],
+  "apresentacao": "Este documento estabelece os indicadores e critérios de avaliação da função de Coordenadora de Compras e Logística, com o objetivo de tornar as expectativas de desempenho claras, objetivas e acompanháveis. A avaliação considera aspectos comportamentais e técnicos próprios da função, incluindo cuidado pessoal, comportamento pessoal, metas e demandas alcançadas dentro do prazo, gestão e planejamento das demandas. Os critérios abaixo deverão orientar os alinhamentos, feedbacks e o acompanhamento contínuo do desempenho, promovendo responsabilidade, desenvolvimento e consistência na execução das atividades."
+ },
+ {
+  "id": "copeira",
+  "funcao": "Copeira",
+  "pessoa": null,
+  "lideres": [
+   "luciana",
+   "geice",
+   "oswaldo"
+  ],
+  "indicadores": [
+   "Cuidado Pessoal",
+   "Comportamento Pessoal",
+   "Qualidade na Limpeza e Higienização de todos os Ambientes",
+   "Postura / Acolhimento / Discrição e sigilo da escuta",
+   "Proatividade e Percepção das Necessidades do Ambiente – preparo e disponibilidade de café, água e apoio às reuniões",
+   "Cuidado e Conservação do Patrimônio da empresa",
+   "Organização da rotina",
+   "Controle e Reposição dos mantimentos da sala da diretoria, copa e limpeza",
+   "Reportação da necessidade de reposição de materiais de limpeza, bebidas e mantimentos",
+   "Utilização das Ferramentas Tecnológicas"
+  ],
+  "secoes": [
+   {
+    "titulo": "Cuidado Pessoal",
+    "itens": [
+     "Boa aparência",
+     "Bem-vestido / uniforme",
+     "Uniforme limpo e passado",
+     "Calçado limpo e de boa aparência",
+     "Calçado correto",
+     "Barba feita",
+     "Cabelo cortado / penteado",
+     "Higiene pessoal / cheiro",
+     "Cuidados com a saúde – médicos e exames em dia",
+     "Higiene bucal",
+     "Boa presença"
+    ],
+    "ind": 1
+   },
+   {
+    "titulo": "Comportamento Pessoal",
+    "itens": [
+     "Respeito às normas, orientações e cultura da empresa",
+     "Comportamento durante o trabalho",
+     "Tratativa com os colegas de trabalho",
+     "Relação interpessoal",
+     "Com o líder – respeito / reciprocidade",
+     "Aceitação na escuta e feedback",
+     "Comportamento com a família / amigos",
+     "Comportamento fora do ciclo do trabalho",
+     "Vícios",
+     "Saúde mental",
+     "Saúde financeira – adiantamento (20%) e empréstimos",
+     "Diálogo e abertura para ouvir os colegas",
+     "Proatividade e iniciativa",
+     "Busca por conhecimento e aprendizado",
+     "Pontualidade",
+     "Uso do celular em excesso"
+    ],
+    "ind": 2
+   },
+   {
+    "titulo": "Uso das Ferramentas Tecnológicas",
+    "itens": [
+     "Utilizar os canais e plataformas presentes no celular",
+     "Interação na plataforma",
+     "Utilizar e responder dentro do prazo, por exemplo, pesquisas ou feedbacks",
+     "Ser honesto e verdadeiro nas respostas",
+     "Responder o painel de humor diariamente",
+     "Engajamento nos aplicativos",
+     "Boa aceitação das plataformas e tecnologias inseridas na operação",
+     "Priorizar a comunicação na plataforma",
+     "Fazer registros de reuniões na plataforma"
+    ],
+    "ind": 10
+   }
+  ],
+  "apresentacao": "Este documento estabelece os indicadores e critérios de avaliação da função de Copeira, com o objetivo de tornar as expectativas de desempenho claras, objetivas e acompanháveis. A avaliação considera aspectos comportamentais e técnicos próprios da função, incluindo cuidado pessoal, comportamento pessoal, qualidade na limpeza e higienização de todos os ambientes, postura / acolhimento / discrição e sigilo da escuta. Os critérios abaixo deverão orientar os alinhamentos, feedbacks e o acompanhamento contínuo do desempenho, promovendo responsabilidade, desenvolvimento e consistência na execução das atividades."
+ },
+ {
+  "id": "cuidadora-sede",
+  "funcao": "Cuidadora da Sede",
+  "pessoa": null,
+  "lideres": [
+   "luciano",
+   "alessandro"
+  ],
+  "indicadores": [
+   "Cuidado Pessoal",
+   "Comportamento Pessoal",
+   "Atenção e Acolhimento",
+   "Limpeza da Sede",
+   "Controle dos Insetos – reportar",
+   "Qualidade da Cozinha",
+   "Reportar manutenção da casa / reportar sobre mantimentos e produtos da casa",
+   "Cuidado e Conservação do Patrimônio",
+   "Organização",
+   "Utilização das Ferramentas Tecnológicas"
+  ],
+  "secoes": [
+   {
+    "titulo": "Cuidado Pessoal",
+    "itens": [
+     "Boa aparência",
+     "Bem-vestida / uniforme",
+     "Uniforme limpo e passado",
+     "Calçado limpo e de boa aparência",
+     "Calçado correto",
+     "Cabelo penteado",
+     "Higiene pessoal / cheiro",
+     "Cuidados com a saúde – médicos e exames em dia",
+     "Higiene bucal",
+     "Boa presença"
+    ],
+    "ind": 1
+   },
+   {
+    "titulo": "Comportamento Pessoal",
+    "itens": [
+     "Respeito às normas, orientações e cultura da empresa",
+     "Comportamento durante o trabalho",
+     "Tratativa com os colegas de trabalho",
+     "Relação interpessoal",
+     "Com o líder – respeito / reciprocidade",
+     "Aceitação na escuta e feedback",
+     "Comportamento com a família / amigos",
+     "Comportamento fora do ciclo do trabalho",
+     "Vícios",
+     "Saúde mental",
+     "Saúde financeira – adiantamento (20%) e empréstimos",
+     "Diálogo e abertura para ouvir os colegas",
+     "Proatividade e iniciativa",
+     "Busca por conhecimento e aprendizado",
+     "Pontualidade",
+     "Uso do celular em excesso"
+    ],
+    "ind": 2
+   },
+   {
+    "titulo": "Atenção e Acolhimento",
+    "itens": [
+     "Boa recepção de quem chegar na fazenda",
+     "Acolhimento",
+     "Educação",
+     "Receber imediatamente",
+     "Atenção à porta – segurança do local",
+     "Sorriso e simpatia",
+     "Organização",
+     "Sigilo com o que escuta – não passar os assuntos para frente / fofocas",
+     "Postura",
+     "Receptividade / simpatia",
+     "Boa vontade e proatividade",
+     "Respeito com qualquer pessoa que chegar"
+    ],
+    "ind": 3
+   },
+   {
+    "titulo": "Limpeza da Sede",
+    "itens": [
+     "Limpeza das janelas, portas de vidro e espelhos (produtos corretos)",
+     "Piso da área da sede sem poeira e sujeira",
+     "Lavagem dos banheiros: paredes, janelas, vaso e pia (detalhes)",
+     "Reposição de sabonete, papel, sacolas de cesto e toalhas",
+     "Cozinha (limpeza de copos, talheres, panelas, fogão e geladeira)",
+     "Roupas de cama / toalhas – sempre aspiradas / lavadas",
+     "Limpeza dos móveis internos e externos – tanto planejados quanto soltos, com produtos específicos para móveis",
+     "Uso do aspirador nos tapetes, sofás e demais superfícies",
+     "Limpeza das luminárias, ventiladores, ar-condicionado e telas",
+     "Limpeza das despensas / prateleiras"
+    ],
+    "ind": 4
+   },
+   {
+    "titulo": "Controle dos Insetos",
+    "itens": [
+     "Fazer controle de inseticidas",
+     "Identificar, reportar e aplicar o veneno para insetos",
+     "Aplicar veneno quando necessário",
+     "Limpeza após o uso do veneno"
+    ],
+    "ind": 5
+   },
+   {
+    "titulo": "Qualidade da Cozinha",
+    "itens": [
+     "Atender às expectativas",
+     "Qualidade da comida",
+     "Temperos",
+     "Temperatura correta",
+     "Diversidade da comida",
+     "Qualidade",
+     "Servir da maneira correta"
+    ],
+    "ind": 6
+   },
+   {
+    "titulo": "Reportação da Manutenção da Casa / Mantimentos e Produtos",
+    "itens": [
+     "Ajuste de janelas, fechaduras e ventiladores",
+     "Ajuste da parte hidráulica",
+     "Infiltrações / goteiras",
+     "Paredes e telhas",
+     "Ajuste da parte elétrica",
+     "Mau contato na parte elétrica – ar-condicionado e outros",
+     "Funcionamento da TV – antena e canais",
+     "Manutenção da internet",
+     "Manutenção do ar-condicionado a cada 6 meses",
+     "Cobrar as manutenções – nível de cobrança e insistência",
+     "Reportar vidros quebrados",
+     "Reportar toda manutenção que exige um terceiro",
+     "Comunicar com antecedência os produtos que faltam (limpeza / alimentação)",
+     "Nível de cobrança com o zelador ou responsável"
+    ],
+    "ind": 7
+   },
+   {
+    "titulo": "Cuidado e Conservação do Patrimônio",
+    "itens": [
+     "Zelar pelos itens da sede",
+     "Não danificar os móveis e móveis de decoração",
+     "Não danificar os elétricos por mau uso",
+     "Utilização dos materiais e produtos corretos",
+     "Utilização dos panos corretos para cada móvel / janela / limpeza"
+    ],
+    "ind": 8
+   },
+   {
+    "titulo": "Organização",
+    "itens": [
+     "Despensa organizada / prateleiras",
+     "Verificar produtos vencidos ou próximos do vencimento",
+     "Organização dentro da geladeira / freezer",
+     "Quadros na posição correta",
+     "Controles no lugar correto",
+     "Camas e quartos",
+     "Cozinha",
+     "Móveis organizados nas posições corretas",
+     "Organização do lixo – orgânico, vidros, reciclável",
+     "Organização dos banheiros"
+    ],
+    "ind": 9
+   },
+   {
+    "titulo": "Utilização das Ferramentas Tecnológicas",
+    "itens": [
+     "Utilizar os canais e plataformas presentes no celular",
+     "Interação na plataforma",
+     "Utilizar e responder dentro do prazo, por exemplo, pesquisas ou feedbacks",
+     "Ser honesto e verdadeiro nas respostas",
+     "Responder o painel de humor diariamente",
+     "Engajamento nos aplicativos",
+     "Boa aceitação das plataformas e tecnologias inseridas na operação",
+     "Priorizar a comunicação na plataforma",
+     "Fazer registros de reuniões na plataforma",
+     "Solicitar e enviar feedback aos colegas e à gestão"
+    ],
+    "ind": 10
+   }
+  ],
+  "apresentacao": "Este documento estabelece os indicadores e critérios de avaliação da função de Cuidadora da Sede, com o objetivo de tornar as expectativas de desempenho claras, objetivas e acompanháveis. A avaliação considera aspectos comportamentais e técnicos próprios da função, incluindo cuidado pessoal, comportamento pessoal, atenção e acolhimento, limpeza da sede. Os critérios abaixo deverão orientar os alinhamentos, feedbacks e o acompanhamento contínuo do desempenho, promovendo responsabilidade, desenvolvimento e consistência na execução das atividades."
+ },
+ {
+  "id": "estagiaria-zootecnica",
+  "funcao": "Estagiária Zootécnica",
+  "pessoa": "Júlia",
+  "lideres": [
+   "iasmim"
+  ],
+  "indicadores": [
+   "Cuidados Pessoais",
+   "Comportamento Pessoal",
+   "Nível de engajamento com o líder direto",
+   "Qualidade e Assertividade das informações lançadas",
+   "Proatividade / Iniciativa / Relação Interpessoal",
+   "Organização, Controle e Planejamento",
+   "Metas alcançadas dentro do prazo",
+   "Capacidade de assimilar conhecimento técnico",
+   "Agilidade na entrega dos lançamentos e execução",
+   "Utilização das Ferramentas Tecnológicas"
+  ],
+  "secoes": [
+   {
+    "titulo": "Cuidado Pessoal",
+    "itens": [
+     "Boa aparência",
+     "Bem-vestida / uniforme",
+     "Uniforme limpo e passado",
+     "Calçado limpo e de boa aparência",
+     "Calçado correto",
+     "Cabelo penteado",
+     "Higiene pessoal / cheiro",
+     "Cuidados com a saúde – médicos e exames em dia",
+     "Higiene bucal",
+     "Boa presença"
+    ],
+    "ind": 1
+   },
+   {
+    "titulo": "Comportamento Pessoal",
+    "itens": [
+     "Comportamento durante o trabalho",
+     "Tratativa com os colegas de trabalho",
+     "Relação interpessoal",
+     "Com o líder – respeito / reciprocidade",
+     "Aceitação na escuta e feedback",
+     "Comportamento com a família / amigos",
+     "Comportamento fora do ciclo do trabalho",
+     "Vícios",
+     "Saúde mental",
+     "Saúde financeira – adiantamento (20%) e empréstimos",
+     "Diálogo e abertura para ouvir os colegas",
+     "Proatividade e iniciativa",
+     "Busca por conhecimento e aprendizado",
+     "Pontualidade"
+    ],
+    "ind": 2
+   },
+   {
+    "titulo": "Nível de engajamento com o líder direto",
+    "itens": [
+     "Comunicação clara e assertiva com o líder",
+     "Entrosamento e relação de confiança com o líder direto",
+     "Receptividade às orientações e direcionamentos recebidos",
+     "Cumprimento dos acordos combinados estabelecidos pela liderança",
+     "Abertura para receber feedbacks e corrigir condutas quando necessário",
+     "Transparência na comunicação de problemas, dificuldades e ocorrências",
+     "Busca de alinhamento com o líder diante de dúvidas ou situações fora da rotina",
+     "Respeito à liderança, à hierarquia e às responsabilidades de cada função",
+     "Colaboração com o líder para o cumprimento das metas e demandas da fazenda",
+     "Comprometimento com as decisões tomadas após alinhamento com a liderança"
+    ],
+    "ind": 3
+   },
+   {
+    "titulo": "Proatividade / Iniciativa / Relação Interpessoal",
+    "itens": [
+     "Busca por entregar além das expectativas",
+     "Cooperação com o encarregado, líderes / gerência",
+     "Boa vontade em realizar o serviço",
+     "Iniciativa em propor algum serviço ou ideia",
+     "Envolvimento nas reciclagens e treinamentos",
+     "Busca pela execução sem depender de solicitações rotineiras"
+    ],
+    "ind": 5
+   },
+   {
+    "titulo": "Utilização das Ferramentas Tecnológicas",
+    "itens": [
+     "Utilizar os canais e plataformas presentes no celular",
+     "Interação na plataforma",
+     "Utilizar e responder dentro do prazo, por exemplo, pesquisas ou feedbacks",
+     "Ser honesto e verdadeiro nas respostas",
+     "Responder o painel de humor diariamente",
+     "Engajamento nos aplicativos",
+     "Boa aceitação das plataformas e tecnologias inseridas na operação",
+     "Priorizar a comunicação na plataforma",
+     "Fazer registros de reuniões na plataforma",
+     "Solicitar e enviar feedback aos colegas e à gestão"
+    ],
+    "ind": 10
+   }
+  ],
+  "apresentacao": "Este documento estabelece os indicadores e critérios de avaliação da função de Estagiária Zootécnica, com o objetivo de tornar as expectativas de desempenho claras, objetivas e acompanháveis. A avaliação considera aspectos comportamentais e técnicos próprios da função, incluindo cuidados pessoais, comportamento pessoal, nível de engajamento com o líder direto, qualidade e assertividade das informações lançadas. Os critérios abaixo deverão orientar os alinhamentos, feedbacks e o acompanhamento contínuo do desempenho, promovendo responsabilidade, desenvolvimento e consistência na execução das atividades."
+ },
+ {
+  "id": "estagiaria-juliana",
+  "funcao": "Estagiária",
+  "pessoa": "Juliana",
+  "lideres": [
+   "ludmilla"
+  ],
+  "indicadores": [
+   "Cuidados Pessoais",
+   "Comportamento Pessoal",
+   "Agilidade no lançamento dos pedidos – entrega em tempo hábil",
+   "Qualidade e Assertividade nos lançamentos",
+   "Conferência diária e semanal / Relatórios",
+   "Organização dos lançamentos de transferências entre fazendas",
+   "Nível de Engajamento com o Líder Direto",
+   "Organização de estoques e relatórios de orçamento",
+   "Proatividade / Iniciativa / Relação Interpessoal",
+   "Utilização das Ferramentas Tecnológicas"
+  ],
+  "secoes": [
+   {
+    "titulo": "Cuidados Pessoais",
+    "itens": [
+     "Boa aparência",
+     "Bem-vestido / uniforme",
+     "Uniforme limpo e passado",
+     "Calçado limpo e de boa aparência",
+     "Calçado correto",
+     "Barba feita",
+     "Cabelo cortado / penteado",
+     "Higiene pessoal / cheiro",
+     "Cuidados com a saúde – médicos e exames em dia",
+     "Higiene bucal",
+     "Boa presença"
+    ],
+    "ind": 1
+   },
+   {
+    "titulo": "Comportamento Pessoal",
+    "itens": [
+     "Comportamento durante o trabalho",
+     "Tratativa com os colegas de trabalho",
+     "Relação interpessoal",
+     "Com o líder – respeito / reciprocidade",
+     "Aceitação na escuta e feedback",
+     "Comportamento com a família / amigos",
+     "Comportamento fora do ciclo do trabalho",
+     "Vícios",
+     "Saúde mental",
+     "Saúde financeira – adiantamento (30%) e empréstimos",
+     "Diálogo e abertura para ouvir os colegas",
+     "Proatividade e iniciativa",
+     "Busca por conhecimento e aprendizado",
+     "Pontualidade",
+     "Uso do celular em excesso"
+    ],
+    "ind": 2
+   },
+   {
+    "titulo": "Agilidade no lançamento dos pedidos – entrega em tempo hábil",
+    "itens": [
+     "Lançamento dentro do prazo estabelecido",
+     "Lançamento diário dos pedidos de cartão de crédito"
+    ],
+    "ind": 3
+   },
+   {
+    "titulo": "Qualidade e Assertividade nos lançamentos",
+    "itens": [
+     "Atenção a cada lançamento",
+     "Atenção com a natureza, centro de custo, safra e observação: o que foi, para onde foi, onde foi utilizado e quantidade",
+     "Conferência dos valores",
+     "Conferir todas as notas fiscais",
+     "Passar para Ana (financeiro), diariamente",
+     "Lançamento / conferência semanal",
+     "Conferir notas fiscais",
+     "Conferir os dados da fazenda",
+     "Conferir valores e quantidades, para onde foi e onde foi usado",
+     "Observar constantemente se há necessidade de rateio",
+     "Conferência com a líder quando tiver dúvidas",
+     "Número de reprovações dos pedidos"
+    ],
+    "ind": 4
+   },
+   {
+    "titulo": "Conferência Diária e Semanal / Relatórios",
+    "itens": [
+     "Qualidade nos relatórios",
+     "Qualidade nos controles",
+     "Conferências dentro do prazo estabelecido"
+    ],
+    "ind": 5
+   },
+   {
+    "titulo": "Organização dos lançamentos de transferências entre as fazendas",
+    "itens": [
+     "Transferências de produtos entre fazendas",
+     "Sempre conferir a fazenda que está recebendo o produto, quanto de produto e no que está sendo usado (vermífugo, vacinas, produtos veterinários referentes aos bois; sempre conferir as safras que irão entrar)",
+     "Conferir validade e quando estiver próximo de acabar",
+     "Reportar ao líder as conferências",
+     "Conferência de nota fiscal e recibo",
+     "Conferência diária de todos os pedidos",
+     "Conferência dos dados, nota ou recibo",
+     "Conferir se todos os pedidos foram aprovados – caso não, refazer",
+     "Número de atividades refeitas",
+     "Refazer estoques (escritório e fazendas)",
+     "Conferir estoque de sal – ligar para o setor responsável para verificação",
+     "Reportar ao líder sobre o estoque de sal",
+     "Conferir e reportar sobre tintas brancas usadas na cerca"
+    ],
+    "ind": 6
+   },
+   {
+    "titulo": "Nível de Engajamento com o Líder Direto",
+    "itens": [
+     "Comunicação clara e assertiva com o líder",
+     "Entrosamento e relação de confiança com o líder direto",
+     "Receptividade às orientações e direcionamentos recebidos",
+     "Cumprimento dos acordos combinados estabelecidos pela liderança",
+     "Abertura para receber feedbacks e corrigir condutas quando necessário",
+     "Transparência na comunicação de problemas, dificuldades e ocorrências",
+     "Busca de alinhamento com o líder diante de dúvidas ou situações fora da rotina",
+     "Respeito à liderança, à hierarquia e às responsabilidades de cada função",
+     "Colaboração com o líder para o cumprimento das metas e demandas da fazenda",
+     "Comprometimento com as decisões tomadas após alinhamento com a liderança"
+    ],
+    "ind": 7
+   },
+   {
+    "titulo": "Organização dos estoques e relatórios de orçamento",
+    "itens": [
+     "Apoiar e dar suporte",
+     "Qualidade na conferência do estoque",
+     "Fazer e buscar informações para elaboração dos relatórios de forma clara e objetiva"
+    ],
+    "ind": 8
+   },
+   {
+    "titulo": "Proatividade / Iniciativa / Relação Interpessoal",
+    "itens": [
+     "Busca por entregar além das expectativas",
+     "Cooperação com o encarregado, líderes / gerência",
+     "Boa vontade em realizar o serviço",
+     "Iniciativa em propor algum serviço ou ideia",
+     "Envolvimento nas reciclagens e treinamentos",
+     "Busca pela execução sem depender de solicitações rotineiras"
+    ],
+    "ind": 9
+   },
+   {
+    "titulo": "Utilização das Ferramentas Tecnológicas",
+    "itens": [
+     "Utilizar os canais e plataformas presentes no celular",
+     "Interação na plataforma",
+     "Utilizar e responder dentro do prazo, por exemplo, pesquisas ou feedbacks",
+     "Ser honesto e verdadeiro nas respostas",
+     "Responder o painel de humor diariamente",
+     "Engajamento nos aplicativos",
+     "Boa aceitação das plataformas e tecnologias inseridas na operação",
+     "Priorizar a comunicação na plataforma",
+     "Fazer registros de reuniões na plataforma",
+     "Solicitar e enviar feedback aos colegas e à gestão"
+    ],
+    "ind": 10
+   }
+  ],
+  "apresentacao": "Este documento estabelece os indicadores e critérios de avaliação da função de Estagiária, com o objetivo de tornar as expectativas de desempenho claras, objetivas e acompanháveis. A avaliação considera aspectos comportamentais e técnicos próprios da função, incluindo cuidados pessoais, comportamento pessoal, agilidade no lançamento dos pedidos – entrega em tempo hábil, qualidade e assertividade nos lançamentos. Os critérios abaixo deverão orientar os alinhamentos, feedbacks e o acompanhamento contínuo do desempenho, promovendo responsabilidade, desenvolvimento e consistência na execução das atividades."
+ },
+ {
+  "id": "estagiario-davi",
+  "funcao": "Estagiário",
+  "pessoa": "Davi",
+  "lideres": [
+   "oswaldo"
+  ],
+  "indicadores": [
+   "Cuidados Pessoais",
+   "Comportamento Pessoal",
+   "Nível de engajamento com a diretoria",
+   "Liderança",
+   "Capacidade de criação e utilização de IA nos processos",
+   "Proatividade / Iniciativa / Relacionamento Interpessoal",
+   "Capacidade de adquirir conhecimento / domínio dos processos operacionais e administrativos",
+   "Metas alcançadas dentro do prazo",
+   "Planejamento / Organização e Controle",
+   "Utilização das Ferramentas Tecnológicas"
+  ],
+  "secoes": [
+   {
+    "titulo": "Cuidado Pessoal",
+    "itens": [
+     "Boa aparência",
+     "Bem-vestida / uniforme",
+     "Uniforme limpo e passado",
+     "Calçado limpo e de boa aparência",
+     "Calçado correto",
+     "Cabelo penteado",
+     "Higiene pessoal / cheiro",
+     "Cuidados com a saúde – médicos e exames em dia",
+     "Higiene bucal",
+     "Boa presença"
+    ],
+    "ind": 1
+   },
+   {
+    "titulo": "Comportamento Pessoal",
+    "itens": [
+     "Comportamento durante o trabalho",
+     "Tratativa com os colegas de trabalho",
+     "Relação interpessoal",
+     "Com o líder – respeito / reciprocidade",
+     "Aceitação na escuta e feedback",
+     "Comportamento com a família / amigos",
+     "Comportamento fora do ciclo do trabalho",
+     "Vícios",
+     "Saúde mental",
+     "Saúde financeira – adiantamento (20%) e empréstimos",
+     "Diálogo e abertura para ouvir os colegas",
+     "Proatividade e iniciativa",
+     "Busca por conhecimento e aprendizado",
+     "Pontualidade"
+    ],
+    "ind": 2
+   },
+   {
+    "titulo": "Nível de engajamento com a diretoria",
+    "itens": [
+     "Comunicação clara e assertiva com o líder",
+     "Entrosamento e relação de confiança com o líder direto",
+     "Receptividade às orientações e direcionamentos recebidos",
+     "Cumprimento dos acordos combinados estabelecidos pela liderança",
+     "Abertura para receber feedbacks e corrigir condutas quando necessário",
+     "Transparência na comunicação de problemas, dificuldades e ocorrências",
+     "Busca de alinhamento com o líder diante de dúvidas ou situações fora da rotina",
+     "Respeito à liderança, à hierarquia e às responsabilidades de cada função",
+     "Colaboração com o líder para o cumprimento das metas e demandas da fazenda",
+     "Comprometimento com as decisões tomadas após alinhamento com a liderança"
+    ],
+    "ind": 3
+   },
+   {
+    "titulo": "Proatividade / Iniciativa / Relação Interpessoal",
+    "itens": [
+     "Busca por entregar além das expectativas",
+     "Cooperação com o encarregado, líderes / gerência",
+     "Boa vontade em realizar o serviço",
+     "Iniciativa em propor algum serviço ou ideia",
+     "Envolvimento nas reciclagens e treinamentos",
+     "Busca pela execução sem depender de solicitações rotineiras"
+    ],
+    "ind": 6
+   },
+   {
+    "titulo": "Liderança",
+    "itens": [
+     "Capacidade de engajamento dos liderados",
+     "Habilidade na comunicação com liderados e outras equipes",
+     "Habilidade de comunicação com os outros líderes da mesma função",
+     "Comunicar ao departamento de Gestão de Pessoas as ocorrências relacionadas ao seu setor",
+     "Respeitar os liderados – sem piadas e brincadeiras de mau gosto",
+     "Feedbacks aos liderados com frequência e de forma individual",
+     "Proatividade e iniciativa",
+     "Reuniões de alinhamento semanais",
+     "Planejamento e execução semanal",
+     "Uso correto do rádio",
+     "Aceitação dos feedbacks dos liderados",
+     "Aceitação ou consideração de maneira positiva das sugestões dos liderados (melhorias e ajustes de conduta)"
+    ],
+    "ind": 4
+   },
+   {
+    "titulo": "Utilização das Ferramentas Tecnológicas",
+    "itens": [
+     "Utilizar os canais e plataformas presentes no celular",
+     "Interação na plataforma",
+     "Utilizar e responder dentro do prazo, por exemplo, pesquisas ou feedbacks",
+     "Ser honesto e verdadeiro nas respostas",
+     "Responder o painel de humor diariamente",
+     "Engajamento nos aplicativos",
+     "Boa aceitação das plataformas e tecnologias inseridas na operação",
+     "Priorizar a comunicação na plataforma",
+     "Fazer registros de reuniões na plataforma",
+     "Solicitar e enviar feedback aos colegas e à gestão"
+    ],
+    "ind": 10
+   }
+  ],
+  "apresentacao": "Este documento estabelece os indicadores e critérios de avaliação da função de Estagiário, com o objetivo de tornar as expectativas de desempenho claras, objetivas e acompanháveis. A avaliação considera aspectos comportamentais e técnicos próprios da função, incluindo cuidados pessoais, comportamento pessoal, nível de engajamento com a diretoria, liderança. Os critérios abaixo deverão orientar os alinhamentos, feedbacks e o acompanhamento contínuo do desempenho, promovendo responsabilidade, desenvolvimento e consistência na execução das atividades."
+ },
+ {
+  "id": "gerencia-financeiro",
+  "funcao": "Gerência Financeiro",
+  "pessoa": "Fernando",
+  "lideres": [
+   "oswaldo"
+  ],
+  "indicadores": [
+   "Cuidado Pessoal",
+   "Comportamento Pessoal",
+   "Gestão Financeira",
+   "Gestão Contábil",
+   "Liderança",
+   "Reciprocidade e Engajamento com o Diretor",
+   "Inovação / Novas Soluções / Processos / Automação",
+   "Metas alcançadas dentro do prazo",
+   "Qualidade e Assertividade da Informação Lançada",
+   "Utilização das Ferramentas Tecnológicas"
+  ],
+  "secoes": [
+   {
+    "titulo": "Cuidado Pessoal",
+    "itens": [
+     "Boa aparência",
+     "Bem-vestido / uniforme",
+     "Uniforme limpo e passado",
+     "Calçado limpo e de boa aparência",
+     "Calçado correto",
+     "Barba feita",
+     "Cabelo cortado / penteado",
+     "Higiene pessoal / cheiro",
+     "Cuidados com a saúde – médicos e exames em dia",
+     "Higiene bucal",
+     "Boa presença"
+    ],
+    "ind": 1
+   },
+   {
+    "titulo": "Comportamento Pessoal",
+    "itens": [
+     "Respeito às normas, orientações e cultura da empresa",
+     "Comportamento durante o trabalho",
+     "Tratativa com os colegas de trabalho",
+     "Relação interpessoal",
+     "Com o líder – respeito / reciprocidade",
+     "Aceitação na escuta e feedback",
+     "Comportamento com a família / amigos",
+     "Comportamento fora do ciclo do trabalho",
+     "Vícios",
+     "Saúde mental",
+     "Saúde financeira – adiantamento (20%) e empréstimos",
+     "Diálogo e abertura para ouvir os colegas",
+     "Proatividade e iniciativa",
+     "Busca por conhecimento e aprendizado",
+     "Pontualidade",
+     "Uso do celular em excesso"
+    ],
+    "ind": 2
+   },
+   {
+    "titulo": "Liderança",
+    "itens": [
+     "Capacidade de engajamento dos liderados",
+     "Habilidade na comunicação com liderados e outras equipes",
+     "Habilidade de comunicação com os outros líderes / gerentes / diretoria",
+     "Comunicar ao departamento de Gestão de Pessoas as ocorrências relacionadas ao seu setor",
+     "Respeitar os liderados – sem piadas e brincadeiras de mau gosto",
+     "Feedbacks aos liderados com frequência e de forma individual",
+     "Proatividade e iniciativa",
+     "Reuniões de alinhamento semanais com o líder e com os liderados",
+     "Planejamento e execução semanal",
+     "Uso correto do rádio"
+    ],
+    "ind": 5
+   },
+   {
+    "titulo": "Utilização das Ferramentas Tecnológicas",
+    "itens": [
+     "Utilizar os canais e plataformas presentes no celular",
+     "Interação na plataforma",
+     "Utilizar e responder dentro do prazo, por exemplo, pesquisas ou feedbacks",
+     "Ser honesto e verdadeiro nas respostas",
+     "Responder o painel de humor diariamente",
+     "Engajamento nos aplicativos",
+     "Boa aceitação das plataformas e tecnologias inseridas na operação",
+     "Priorizar a comunicação na plataforma",
+     "Fazer registros de reuniões na plataforma",
+     "Solicitar e enviar feedback aos colegas e à gestão"
+    ],
+    "ind": 10
+   }
+  ],
+  "apresentacao": "Este documento estabelece os indicadores e critérios de avaliação da função de Gerência Financeiro, com o objetivo de tornar as expectativas de desempenho claras, objetivas e acompanháveis. A avaliação considera aspectos comportamentais e técnicos próprios da função, incluindo cuidado pessoal, comportamento pessoal, gestão financeira, gestão contábil. Os critérios abaixo deverão orientar os alinhamentos, feedbacks e o acompanhamento contínuo do desempenho, promovendo responsabilidade, desenvolvimento e consistência na execução das atividades."
+ },
+ {
+  "id": "gerencia-geral",
+  "funcao": "Gerência Geral",
+  "pessoa": "Jeovane",
+  "lideres": [
+   "oswaldo"
+  ],
+  "indicadores": [
+   "Cuidados Pessoais",
+   "Comportamento Pessoal",
+   "Liderança",
+   "Avaliação da Entrega do Gestor de Manutenção Estrutural da fazenda e sedes",
+   "Avaliação da Equipe do Gado / Encarregado",
+   "Avaliação da Entrega da Analista Zootécnica",
+   "Reciprocidade e Engajamento com a Diretoria",
+   "Visão / Planejamento e Organização",
+   "Proatividade / Iniciativa e Relacionamento Interpessoal",
+   "Uso das Ferramentas Tecnológicas"
+  ],
+  "secoes": [
+   {
+    "titulo": "Cuidado Pessoal",
+    "itens": [
+     "Boa aparência",
+     "Bem-vestida / uniforme",
+     "Uniforme limpo e passado",
+     "Calçado limpo e de boa aparência",
+     "Calçado correto",
+     "Cabelo penteado",
+     "Higiene pessoal / cheiro",
+     "Cuidados com a saúde – médicos e exames em dia",
+     "Higiene bucal",
+     "Boa presença"
+    ],
+    "ind": 1
+   },
+   {
+    "titulo": "Comportamento Pessoal",
+    "itens": [
+     "Respeito às normas, orientações e cultura da empresa",
+     "Comportamento durante o trabalho",
+     "Tratativa com os colegas de trabalho",
+     "Relação interpessoal",
+     "Com o líder – respeito / reciprocidade",
+     "Aceitação na escuta e feedback",
+     "Comportamento com a família / amigos",
+     "Comportamento fora do ciclo do trabalho",
+     "Vícios",
+     "Saúde mental",
+     "Saúde financeira – adiantamento (20%) e empréstimos",
+     "Diálogo e abertura para ouvir os colegas",
+     "Proatividade e iniciativa",
+     "Busca por conhecimento e aprendizado",
+     "Pontualidade"
+    ],
+    "ind": 2
+   },
+   {
+    "titulo": "Liderança",
+    "itens": [
+     "Capacidade de engajamento dos liderados",
+     "Habilidade na comunicação com liderados e outras equipes",
+     "Habilidade de comunicação com os outros líderes / gerentes / diretoria",
+     "Comunicar ao departamento de Gestão de Pessoas as ocorrências relacionadas ao seu setor",
+     "Respeitar os liderados – sem piadas e brincadeiras de mau gosto",
+     "Feedbacks aos liderados com frequência e de forma individual",
+     "Proatividade e iniciativa",
+     "Reuniões de alinhamento semanais com o líder e com os liderados",
+     "Planejamento e execução semanal",
+     "Uso correto do rádio"
+    ],
+    "ind": 3
+   },
+   {
+    "titulo": "Proatividade / Iniciativa e Relacionamento Interpessoal",
+    "itens": [
+     "Busca por entregar além das expectativas",
+     "Engajamento com o líder direto / gerência",
+     "Boa vontade em realizar o serviço",
+     "Iniciativa em propor algum serviço e ideia",
+     "Envolvimento nos treinamentos",
+     "Busca pela execução sem depender de solicitações rotineiras",
+     "Bom relacionamento com os liderados"
+    ],
+    "ind": 9
+   },
+   {
+    "titulo": "Utilização das Ferramentas Tecnológicas",
+    "itens": [
+     "Utilizar os canais e plataformas presentes no celular",
+     "Interação na plataforma",
+     "Utilizar e responder dentro do prazo, por exemplo, pesquisas ou feedbacks",
+     "Ser honesto e verdadeiro nas respostas",
+     "Responder o painel de humor diariamente",
+     "Engajamento nos aplicativos",
+     "Boa aceitação das plataformas e tecnologias inseridas na operação",
+     "Priorizar a comunicação na plataforma",
+     "Fazer registros de reuniões na plataforma",
+     "Solicitar e enviar feedback aos colegas e à gestão"
+    ],
+    "ind": 10
+   }
+  ],
+  "apresentacao": "Este documento estabelece os indicadores e critérios de avaliação da função de Gerência Geral, com o objetivo de tornar as expectativas de desempenho claras, objetivas e acompanháveis. A avaliação considera aspectos comportamentais e técnicos próprios da função, incluindo cuidados pessoais, comportamento pessoal, liderança, avaliação da entrega do gestor de manutenção estrutural da fazenda e sedes. Os critérios abaixo deverão orientar os alinhamentos, feedbacks e o acompanhamento contínuo do desempenho, promovendo responsabilidade, desenvolvimento e consistência na execução das atividades."
+ },
+ {
+  "id": "gerencia-gestao-pessoas",
+  "funcao": "Gerência de Gestão de Pessoas e Cultura",
+  "pessoa": "Luciana",
+  "lideres": [
+   "oswaldo"
+  ],
+  "indicadores": [
+   "Cuidado Pessoal",
+   "Comportamento Pessoal",
+   "Gestão dos Processos de Pessoas e RH",
+   "Recrutamento / Seleção / Retenção",
+   "Assertividade nas Tratativas Interpessoais / Clima / Cultura",
+   "Desempenho Comportamental da Equipe",
+   "Reciprocidade e Engajamento com o Diretor",
+   "Inovação / Novas Soluções / Automação / Treinamentos / Processos / Desenvolvimento de Líderes / Integração das Áreas",
+   "Metas alcançadas dentro do prazo",
+   "Utilização das Ferramentas Tecnológicas"
+  ],
+  "secoes": [
+   {
+    "titulo": "Cuidado Pessoal",
+    "itens": [
+     "Boa aparência",
+     "Bem-vestido / uniforme",
+     "Uniforme limpo e passado",
+     "Calçado limpo e de boa aparência",
+     "Calçado correto",
+     "Barba feita",
+     "Cabelo cortado / penteado",
+     "Higiene pessoal / cheiro",
+     "Cuidados com a saúde – médicos e exames em dia",
+     "Higiene bucal",
+     "Boa presença"
+    ],
+    "ind": 1
+   },
+   {
+    "titulo": "Comportamento Pessoal",
+    "itens": [
+     "Respeito às normas, orientações e cultura da empresa",
+     "Comportamento durante o trabalho",
+     "Tratativa com os colegas de trabalho",
+     "Relação interpessoal",
+     "Com o líder – respeito / reciprocidade",
+     "Aceitação na escuta e feedback",
+     "Comportamento com a família / amigos",
+     "Comportamento fora do ciclo do trabalho",
+     "Vícios",
+     "Saúde mental",
+     "Saúde financeira – adiantamento (20%) e empréstimos",
+     "Diálogo e abertura para ouvir os colegas",
+     "Proatividade e iniciativa",
+     "Busca por conhecimento e aprendizado",
+     "Pontualidade",
+     "Uso do celular em excesso"
+    ],
+    "ind": 2
+   },
+   {
+    "titulo": "Gestão dos Processos de Pessoas e RH",
+    "itens": [
+     "Acompanhamento de férias, afastamentos, atestados e retornos",
+     "Interface eficiente com a contabilidade e demais áreas envolvidas",
+     "Controle e acompanhamento dos benefícios",
+     "Manutenção das informações cadastrais atualizadas",
+     "Padronização dos processos de RH entre escritório e fazendas",
+     "Redução de erros, pendências e retrabalho",
+     "Acompanhamento das demandas até sua efetiva conclusão"
+    ],
+    "ind": 3
+   },
+   {
+    "titulo": "Recrutamento / Seleção / Retenção",
+    "itens": [
+     "Organização e acompanhamento dos processos admissionais e demissionais",
+     "Controle de documentação dos colaboradores",
+     "Clareza na definição do perfil das vagas junto aos líderes",
+     "Agilidade na abertura e divulgação das vagas",
+     "Condução estruturada das entrevistas",
+     "Avaliação da compatibilidade comportamental e técnica do candidato",
+     "Levantamento de referências quando necessário",
+     "Agilidade no fechamento das vagas sem comprometer a qualidade da contratação",
+     "Qualidade na triagem de currículos",
+     "Organização da documentação de admissão",
+     "Análise dos motivos de desligamento e rotatividade",
+     "Monitoramento de absenteísmo e rotatividade",
+     "Identificação dos principais motivos de desligamento",
+     "Proposição de ações para retenção de profissionais estratégicos"
+    ],
+    "ind": 4
+   },
+   {
+    "titulo": "Assertividade nas Tratativas Interpessoais / Clima / Cultura",
+    "itens": [
+     "Realização adequada da integração de novos colaboradores",
+     "Acompanhamento do período de experiência e adaptação",
+     "Identificação de sinais de desmotivação, conflitos ou queda de engajamento",
+     "Escuta ativa dos colaboradores",
+     "Tratamento adequado das demandas recebidas",
+     "Desenvolvimento de ações coerentes com as necessidades identificadas",
+     "Acompanhamento da efetividade das ações realizadas",
+     "Promoção de reconhecimento e valorização"
+    ],
+    "grupos": [
+     {
+      "titulo": "Comunicação Interna e Integração entre Áreas",
+      "itens": [
+       "Clareza e qualidade dos comunicados internos",
+       "Agilidade na transmissão de informações importantes",
+       "Utilização adequada dos canais oficiais",
+       "Padronização da comunicação entre fazendas e escritório",
+       "Redução de ruídos e informações desencontradas",
+       "Capacidade de adaptar a linguagem ao público",
+       "Estímulo ao uso dos canais institucionais"
+      ]
+     }
+    ],
+    "ind": 5
+   },
+   {
+    "titulo": "Reciprocidade e Engajamento com a Diretoria",
+    "itens": [
+     "Alinhamento prévio de comunicações sensíveis com a Diretoria",
+     "Comunicação adequada de normas, mudanças e novos processos",
+     "Antecipação de problemas relacionados às pessoas",
+     "Apresentação de soluções à Diretoria, e não apenas de problemas",
+     "Capacidade de transformar demandas da Diretoria em processos estruturados",
+     "Apresentação periódica dos principais indicadores de pessoas à Diretoria"
+    ],
+    "ind": 7
+   },
+   {
+    "titulo": "Metas alcançadas dentro do prazo",
+    "itens": [
+     "Cumprimento dos prazos relacionados aos processos de pessoas",
+     "Acompanhamento das demandas até sua efetiva conclusão"
+    ],
+    "grupos": [
+     {
+      "titulo": "Visão Estratégica, Planejamento e Entrega de Resultados",
+      "itens": [
+       "Cumprimento dos projetos e ações dentro dos prazos acordados",
+       "Acompanhamento do Planejado × Realizado"
+      ]
+     }
+    ],
+    "ind": 9
+   },
+   {
+    "titulo": "Utilização das Ferramentas Tecnológicas",
+    "itens": [
+     "Utilizar os canais e plataformas presentes no celular",
+     "Interação na plataforma",
+     "Utilizar e responder dentro do prazo, por exemplo, pesquisas ou feedbacks",
+     "Ser honesto e verdadeiro nas respostas",
+     "Responder o painel de humor diariamente",
+     "Engajamento nos aplicativos",
+     "Boa aceitação das plataformas e tecnologias inseridas na operação",
+     "Priorizar a comunicação na plataforma",
+     "Fazer registros de reuniões na plataforma",
+     "Solicitar e enviar feedback aos colegas e à gestão"
+    ],
+    "ind": 10
+   }
+  ],
+  "apresentacao": "Este documento estabelece os indicadores e critérios de avaliação da função de Gerência de Gestão de Pessoas e Cultura, com o objetivo de tornar as expectativas de desempenho claras, objetivas e acompanháveis. A avaliação considera aspectos comportamentais e técnicos próprios da função, incluindo cuidado pessoal, comportamento pessoal, gestão dos processos de pessoas e RH, recrutamento / seleção / retenção. Os critérios abaixo deverão orientar os alinhamentos, feedbacks e o acompanhamento contínuo do desempenho, promovendo responsabilidade, desenvolvimento e consistência na execução das atividades."
+ },
+ {
+  "id": "gerencia-manutencao",
+  "funcao": "Gerência Manutenção",
+  "pessoa": "Alessandro",
+  "lideres": [
+   "oswaldo"
+  ],
+  "indicadores": [
+   "Cuidados Pessoais",
+   "Comportamento Pessoal",
+   "Visão / Planejamento / Controle / Relatórios e Gestão das Prioridades",
+   "Avaliação da Entrega da Equipe de Manutenção Estrutural da fazenda",
+   "Avaliação da Entrega da Equipe das Sedes",
+   "Visão integral das demandas a serem realizadas de obras e manutenções",
+   "Liderança",
+   "Qualidade no acompanhamento e conclusão das obras e manutenções",
+   "Proatividade / Iniciativa e Relacionamento Interpessoal",
+   "Utilização das Ferramentas Tecnológicas"
+  ],
+  "secoes": [
+   {
+    "titulo": "Cuidado Pessoal",
+    "itens": [
+     "Boa aparência",
+     "Bem-vestida / uniforme",
+     "Uniforme limpo e passado",
+     "Calçado limpo e de boa aparência",
+     "Calçado correto",
+     "Cabelo penteado",
+     "Higiene pessoal / cheiro",
+     "Cuidados com a saúde – médicos e exames em dia",
+     "Higiene bucal",
+     "Boa presença"
+    ],
+    "ind": 1
+   },
+   {
+    "titulo": "Comportamento Pessoal",
+    "itens": [
+     "Respeito às normas, orientações e cultura da empresa",
+     "Comportamento durante o trabalho",
+     "Tratativa com os colegas de trabalho",
+     "Relação interpessoal",
+     "Com o líder – respeito / reciprocidade",
+     "Aceitação na escuta e feedback",
+     "Comportamento com a família / amigos",
+     "Comportamento fora do ciclo do trabalho",
+     "Vícios",
+     "Saúde mental",
+     "Saúde financeira – adiantamento (20%) e empréstimos",
+     "Diálogo e abertura para ouvir os colegas",
+     "Proatividade e iniciativa",
+     "Busca por conhecimento e aprendizado",
+     "Pontualidade"
+    ],
+    "ind": 2
+   },
+   {
+    "titulo": "Visão / Planejamento / Controle e Relatórios de Gestão das Prioridades",
+    "itens": [
+     "Ter uma visão criteriosa das manutenções, organização e estética",
+     "Planejamento semanal das atividades",
+     "Relatório do Planejado x Realizado",
+     "Estabelecer prioridades junto à Diretoria / Gerência",
+     "Alinhamento semanal das atividades da zeladoria",
+     "Controle e acompanhamento das demandas por escrito",
+     "Planejamento diário com a equipe dos serviços gerais",
+     "Avaliação da entrega da equipe de manutenção estrutural da fazenda",
+     "Avaliação da entrega da equipe das sedes"
+    ],
+    "ind": 3
+   },
+   {
+    "titulo": "Liderança",
+    "itens": [
+     "Capacidade de engajamento dos liderados",
+     "Habilidade na comunicação com liderados e outras equipes",
+     "Habilidade de comunicação com os outros líderes / gerentes / diretoria",
+     "Comunicar ao departamento de Gestão de Pessoas as ocorrências relacionadas ao seu setor",
+     "Respeitar os liderados – sem piadas e brincadeiras de mau gosto",
+     "Feedbacks aos liderados com frequência e de forma individual",
+     "Proatividade e iniciativa",
+     "Reuniões de alinhamento semanais com o líder e com os liderados",
+     "Planejamento e execução semanal",
+     "Uso correto do rádio"
+    ],
+    "ind": 7
+   },
+   {
+    "titulo": "Proatividade / Iniciativa e Relacionamento Interpessoal",
+    "itens": [
+     "Busca por entregar além das expectativas",
+     "Engajamento com o líder direto / gerência",
+     "Boa vontade em realizar o serviço",
+     "Iniciativa em propor algum serviço e ideia",
+     "Envolvimento nos treinamentos",
+     "Busca pela execução sem depender de solicitações rotineiras",
+     "Bom relacionamento com os liderados"
+    ],
+    "ind": 9
+   },
+   {
+    "titulo": "Utilização das Ferramentas Tecnológicas",
+    "itens": [
+     "Utilizar os canais e plataformas presentes no celular",
+     "Interação na plataforma",
+     "Utilizar e responder dentro do prazo, por exemplo, pesquisas ou feedbacks",
+     "Ser honesto e verdadeiro nas respostas",
+     "Responder o painel de humor diariamente",
+     "Engajamento nos aplicativos",
+     "Boa aceitação das plataformas e tecnologias inseridas na operação",
+     "Priorizar a comunicação na plataforma",
+     "Fazer registros de reuniões na plataforma",
+     "Solicitar e enviar feedback aos colegas e à gestão"
+    ],
+    "ind": 10
+   }
+  ],
+  "apresentacao": "Este documento estabelece os indicadores e critérios de avaliação da função de Gerência Manutenção, com o objetivo de tornar as expectativas de desempenho claras, objetivas e acompanháveis. A avaliação considera aspectos comportamentais e técnicos próprios da função, incluindo cuidados pessoais, comportamento pessoal, visão / planejamento / controle / relatórios e gestão das prioridades, avaliação da entrega da equipe de manutenção estrutural da fazenda. Os critérios abaixo deverão orientar os alinhamentos, feedbacks e o acompanhamento contínuo do desempenho, promovendo responsabilidade, desenvolvimento e consistência na execução das atividades."
+ },
+ {
+  "id": "motorista",
+  "funcao": "Motorista",
+  "pessoa": "Carlos",
+  "lideres": [
+   "ludmilla",
+   "oswaldo"
+  ],
+  "indicadores": [
+   "Cuidado Pessoal",
+   "Comportamento Pessoal",
+   "Postura / Proatividade / Iniciativa / Relação Interpessoal",
+   "Agilidade e Rendimento das Demandas",
+   "Qualidade na Organização e Planejamento das Entregas",
+   "Manutenção / Limpeza e Organização do Veículo",
+   "Nível de Engajamento com o Líder Direto",
+   "Controle e Organização do Almoxarifado Diário",
+   "Direção Segura e Responsável com o Veículo",
+   "Uso das Ferramentas Tecnológicas"
+  ],
+  "secoes": [
+   {
+    "titulo": "Cuidado Pessoal",
+    "itens": [
+     "Boa aparência",
+     "Bem-vestido / uniforme",
+     "Uniforme limpo e passado",
+     "Calçado limpo e de boa aparência",
+     "Calçado correto",
+     "Barba feita",
+     "Cabelo cortado / penteado",
+     "Higiene pessoal / cheiro",
+     "Cuidados com a saúde – médicos e exames em dia",
+     "Higiene bucal",
+     "Boa presença"
+    ],
+    "ind": 1
+   },
+   {
+    "titulo": "Comportamento Pessoal",
+    "itens": [
+     "Respeito às normas, orientações e cultura da empresa",
+     "Comportamento durante o trabalho",
+     "Tratativa com os colegas de trabalho",
+     "Relação interpessoal",
+     "Com o líder – respeito / reciprocidade",
+     "Aceitação na escuta e feedback",
+     "Comportamento com a família / amigos",
+     "Comportamento fora do ciclo do trabalho",
+     "Vícios",
+     "Saúde mental",
+     "Saúde financeira – adiantamento (30%) e empréstimos",
+     "Diálogo e abertura para ouvir os colegas",
+     "Proatividade e iniciativa",
+     "Busca por conhecimento e aprendizado",
+     "Pontualidade",
+     "Uso do celular em excesso"
+    ],
+    "ind": 2
+   },
+   {
+    "titulo": "Postura / Proatividade / Iniciativa / Relação Interpessoal",
+    "itens": [
+     "Discrição sobre os assuntos que escuta no escritório e assuntos relacionados à empresa",
+     "Sigilo e confidencialidade do que escuta dentro do carro ou fora dele",
+     "Tratativa com os fornecedores ou prestadores de serviço",
+     "Proatividade e iniciativa com as demandas diárias",
+     "Relacionamento com os colegas de trabalho"
+    ],
+    "ind": 3
+   },
+   {
+    "titulo": "Agilidade e Rendimento das Demandas",
+    "itens": [
+     "Atenção nas demandas",
+     "Conferência da mercadoria no recebimento e na entrega",
+     "Registro de quem recebe a mercadoria",
+     "Agilidade e rapidez nas entregas",
+     "Redução de atrasos evitáveis",
+     "Boa utilização do tempo de trabalho"
+    ],
+    "ind": 4
+   },
+   {
+    "titulo": "Qualidade na Organização e Planejamento das Entregas",
+    "itens": [
+     "Alinhamento prévio das demandas e prioridades com a liderança",
+     "Registro e planejamento da rota",
+     "Planejamento adequado de rotas e horários",
+     "Verificação diária da rotina",
+     "Comunicação antecipada sobre imprevistos",
+     "Sinalizar o encerramento das atividades ou a última entrega do dia – por exemplo, itens da Sede para Goiânia, maquinário para manutenção, entre outros",
+     "Cumprimento do planejamento estabelecido",
+     "Cumprimento da logística",
+     "Pontualidade nas saídas e chegadas",
+     "Cumprimento dos horários combinados",
+     "Execução das rotas e destinos estabelecidos",
+     "Atenção aos horários de entregas, retiradas e compromissos",
+     "Capacidade de reorganizar a logística diante de imprevistos",
+     "Comunicação imediata quando houver atrasos"
+    ],
+    "ind": 5
+   },
+   {
+    "titulo": "Manutenção / Limpeza e Organização do Veículo",
+    "itens": [
+     "Manter a limpeza do veículo interna e externa",
+     "Organização dos itens transportados",
+     "Cuidados com os bancos, porta-malas e demais áreas do veículo",
+     "Reportar quando for necessária a lavagem do carro",
+     "Zelo pelo patrimônio da empresa",
+     "Manutenção do veículo em condições de uso e apresentação",
+     "Reporte e acompanhamento da manutenção do veículo",
+     "Realização das verificações básicas necessárias antes do uso do veículo",
+     "Identificação e comunicação imediata de ruídos, falhas, avarias ou alertas do painel",
+     "Acompanhamento da quilometragem e da necessidade de revisões",
+     "Reportar à coordenadora sobre pneus, óleo, fluidos e demais itens de manutenção",
+     "Reporte de danos ou ocorrências",
+     "Não utilizar o veículo de forma negligente quando houver indício de problema mecânico"
+    ],
+    "ind": 6
+   },
+   {
+    "titulo": "Nível de Engajamento com o Líder Direto",
+    "itens": [
+     "Comunicação clara e assertiva com o líder",
+     "Entrosamento e relação de confiança com o líder direto",
+     "Receptividade às orientações e direcionamentos recebidos",
+     "Cumprimento dos acordos combinados estabelecidos pela liderança",
+     "Abertura para receber feedbacks e corrigir condutas quando necessário",
+     "Transparência na comunicação de problemas, dificuldades e ocorrências",
+     "Busca de alinhamento com o líder diante de dúvidas ou situações fora da rotina",
+     "Respeito à liderança, à hierarquia e às responsabilidades de cada função",
+     "Colaboração com o líder para o cumprimento das metas e demandas da fazenda",
+     "Comprometimento com as decisões tomadas após alinhamento com a liderança"
+    ],
+    "ind": 7
+   },
+   {
+    "titulo": "Controle e Organização do Almoxarifado Diário",
+    "itens": [
+     "Qualidade nas informações de entrada e saída dos estoques",
+     "Qualidade nas informações para tomar a decisão de compra",
+     "Especificação de cada produto do estoque",
+     "Movimentação e transferências de produtos"
+    ],
+    "ind": 8
+   },
+   {
+    "titulo": "Direção Segura e Responsável com o Veículo",
+    "itens": [
+     "Cumprimento das leis de trânsito",
+     "Direção defensiva e prudente",
+     "Respeito aos limites de velocidade",
+     "Não utilização inadequada do celular durante a condução",
+     "Cuidado com passageiros e cargas",
+     "Prevenção de multas e infrações",
+     "Condução econômica e responsável",
+     "Prevenção de acidentes decorrentes de imprudência ou negligência"
+    ],
+    "ind": 9
+   },
+   {
+    "titulo": "Uso das Ferramentas Tecnológicas",
+    "itens": [
+     "Utilizar os canais e plataformas presentes no celular",
+     "Interação na plataforma",
+     "Utilizar e responder dentro do prazo, por exemplo, pesquisas ou feedbacks",
+     "Ser honesto e verdadeiro nas respostas",
+     "Responder o painel de humor diariamente",
+     "Engajamento nos aplicativos",
+     "Boa aceitação das plataformas e tecnologias inseridas na operação",
+     "Priorizar a comunicação na plataforma",
+     "Fazer registros de reuniões na plataforma",
+     "Solicitar e enviar feedback aos colegas e à gestão"
+    ],
+    "ind": 10
+   }
+  ],
+  "apresentacao": "Este documento estabelece os indicadores e critérios de avaliação da função de Motorista, com o objetivo de tornar as expectativas de desempenho claras, objetivas e acompanháveis. A avaliação considera aspectos comportamentais e técnicos próprios da função, incluindo cuidados pessoais, comportamento pessoal, postura / proatividade / iniciativa / relação interpessoal, agilidade e rendimento das demandas. Os critérios abaixo deverão orientar os alinhamentos, feedbacks e o acompanhamento contínuo do desempenho, promovendo responsabilidade, desenvolvimento e consistência na execução das atividades."
+ },
+ {
+  "id": "servicos-gerais",
+  "funcao": "Serviços Gerais",
+  "pessoa": null,
+  "lideres": [
+   "alessandro"
+  ],
+  "indicadores": [
+   "Cuidado Pessoal",
+   "Comportamento Pessoal",
+   "Organização das Ferramentas",
+   "Reportação de Manutenção",
+   "Conservação, Organização e Manutenção das Ferramentas / Máquinas e Produtos",
+   "Rendimento de Serviço",
+   "Uso do EPI",
+   "Qualidade da Execução",
+   "Proatividade / Iniciativa / Relação Interpessoal",
+   "Utilização das Ferramentas Tecnológicas"
+  ],
+  "secoes": [
+   {
+    "titulo": "Cuidado Pessoal",
+    "itens": [
+     "Boa aparência",
+     "Bem-vestida / uniforme",
+     "Uniforme limpo e passado",
+     "Calçado limpo e de boa aparência",
+     "Calçado correto",
+     "Cabelo penteado",
+     "Higiene pessoal / cheiro",
+     "Cuidados com a saúde – médicos e exames em dia",
+     "Higiene bucal",
+     "Boa presença"
+    ],
+    "ind": 1
+   },
+   {
+    "titulo": "Comportamento Pessoal",
+    "itens": [
+     "Respeito às normas, orientações e cultura da empresa",
+     "Comportamento durante o trabalho",
+     "Tratativa com os colegas de trabalho",
+     "Relação interpessoal",
+     "Com o líder – respeito / reciprocidade",
+     "Aceitação na escuta e feedback",
+     "Comportamento com a família / amigos",
+     "Comportamento fora do ciclo do trabalho",
+     "Vícios",
+     "Saúde mental",
+     "Saúde financeira – adiantamento (20%) e empréstimos",
+     "Diálogo e abertura para ouvir os colegas",
+     "Proatividade e iniciativa",
+     "Busca por conhecimento e aprendizado",
+     "Pontualidade"
+    ],
+    "ind": 2
+   },
+   {
+    "titulo": "Conservação, Organização e Manutenção das Ferramentas / Máquinas e Produtos",
+    "itens": [
+     "Bom uso das ferramentas e maquinários",
+     "Utilização dos materiais e produtos de forma adequada e sem desperdício",
+     "Preservação das ferramentas",
+     "Perdas e descuido das ferramentas, máquinas e produtos",
+     "Limpeza dos equipamentos",
+     "Após o término, limpar e guardar no local correto"
+    ],
+    "ind": 5
+   },
+   {
+    "titulo": "Reportação de Manutenção",
+    "itens": [
+     "Observar qualquer demanda de manutenção que esteja à vista",
+     "Reportar o andamento da manutenção e dos serviços",
+     "Reportar ocorrências e danos materiais"
+    ],
+    "ind": 4
+   },
+   {
+    "titulo": "Rendimento de Serviço",
+    "itens": [
+     "Agilidade na realização das tarefas",
+     "Bom uso do tempo na execução",
+     "Horários desperdiçados, por exemplo, demora para o retorno ao trabalho, uso indevido do celular no horário de trabalho"
+    ],
+    "ind": 6
+   },
+   {
+    "titulo": "Uso do EPI",
+    "itens": [
+     "Utilização correta dos equipamentos de proteção",
+     "Reportar a necessidade de troca quando necessário",
+     "Bom uso e conservação dos EPIs"
+    ],
+    "ind": 7
+   },
+   {
+    "titulo": "Qualidade da Execução",
+    "itens": [
+     "Realizar as tarefas conforme a orientação do líder",
+     "Capricho e zelo",
+     "Cuidado com os detalhes na execução de cada serviço",
+     "Atenção para não haver necessidade de refazer o serviço"
+    ],
+    "ind": 8
+   },
+   {
+    "titulo": "Proatividade / Iniciativa / Relação Interpessoal",
+    "itens": [
+     "Busca por entregar além das expectativas",
+     "Cooperação com o encarregado, líderes / gerência",
+     "Boa vontade em realizar o serviço",
+     "Iniciativa em propor algum serviço ou ideia",
+     "Envolvimento nas reciclagens e treinamentos",
+     "Busca pela execução sem depender de solicitações rotineiras"
+    ],
+    "ind": 9
+   },
+   {
+    "titulo": "Utilização das Ferramentas Tecnológicas",
+    "itens": [
+     "Utilizar os canais e plataformas presentes no celular",
+     "Interação na plataforma",
+     "Utilizar e responder dentro do prazo, por exemplo, pesquisas ou feedbacks",
+     "Ser honesto e verdadeiro nas respostas",
+     "Responder o painel de humor diariamente",
+     "Engajamento nos aplicativos",
+     "Boa aceitação das plataformas e tecnologias inseridas na operação",
+     "Priorizar a comunicação na plataforma",
+     "Fazer registros de reuniões na plataforma",
+     "Solicitar e enviar feedback aos colegas e à gestão"
+    ],
+    "ind": 10
+   }
+  ],
+  "apresentacao": "Este documento estabelece os indicadores e critérios de avaliação da função de Serviços Gerais, com o objetivo de tornar as expectativas de desempenho claras, objetivas e acompanháveis. A avaliação considera aspectos comportamentais e técnicos próprios da função, incluindo cuidado pessoal, comportamento pessoal, organização das ferramentas, reportação de manutenção. Os critérios abaixo deverão orientar os alinhamentos, feedbacks e o acompanhamento contínuo do desempenho, promovendo responsabilidade, desenvolvimento e consistência na execução das atividades."
+ },
+ {
+  "id": "tratorista",
+  "funcao": "Tratorista",
+  "pessoa": null,
+  "lideres": [
+   "jeovane"
+  ],
+  "indicadores": [
+   "Cuidado Pessoal",
+   "Comportamento Pessoal",
+   "Manutenção de Máquinas e Implementos",
+   "Uso de EPI",
+   "Limpeza de Máquinas e Implementos",
+   "Rendimento do Serviço",
+   "Qualidade do Serviço e Execução",
+   "Reportação de Manutenção",
+   "Iniciativa / Produtividade / Engajamento (participação)",
+   "Utilização das Ferramentas Tecnológicas"
+  ],
+  "secoes": [
+   {
+    "titulo": "Cuidado Pessoal",
+    "itens": [
+     "Boa aparência",
+     "Bem-vestida / uniforme",
+     "Uniforme limpo e passado",
+     "Calçado limpo e de boa aparência",
+     "Calçado correto",
+     "Cabelo penteado",
+     "Higiene pessoal / cheiro",
+     "Cuidados com a saúde – médicos e exames em dia",
+     "Higiene bucal",
+     "Boa presença"
+    ],
+    "ind": 1
+   },
+   {
+    "titulo": "Comportamento Pessoal",
+    "itens": [
+     "Respeito às normas, orientações e cultura da empresa",
+     "Comportamento durante o trabalho",
+     "Tratativa com os colegas de trabalho",
+     "Relação interpessoal",
+     "Com o líder – respeito / reciprocidade",
+     "Aceitação na escuta e feedback",
+     "Comportamento com a família / amigos",
+     "Comportamento fora do ciclo do trabalho",
+     "Vícios",
+     "Saúde mental",
+     "Saúde financeira – adiantamento (20%) e empréstimos",
+     "Diálogo e abertura para ouvir os colegas",
+     "Proatividade e iniciativa",
+     "Busca por conhecimento e aprendizado",
+     "Pontualidade"
+    ],
+    "ind": 2
+   },
+   {
+    "titulo": "Manutenção de Máquinas e Implementos",
+    "itens": [
+     "Engraxamento das máquinas",
+     "Posicionamento das máquinas no local certo",
+     "Organização dos tratores e implementos",
+     "Conferência do óleo, filtros e outros",
+     "Acompanhamento das horas para revisão",
+     "Conservação do maquinário",
+     "Bom uso das máquinas e implementos",
+     "Organização das caixas de ferramentas da manutenção"
+    ],
+    "ind": 3
+   },
+   {
+    "titulo": "Uso do EPI",
+    "itens": [
+     "Utilização correta dos equipamentos de proteção",
+     "Reportar a necessidade de troca quando necessário",
+     "Bom uso e conservação dos EPIs"
+    ],
+    "ind": 4
+   },
+   {
+    "titulo": "Limpeza de Máquinas e Implementos",
+    "itens": [
+     "Manter frequência de limpeza diária",
+     "Ter qualidade na lavagem e limpeza das máquinas e implementos",
+     "Utilizar os produtos de forma adequada",
+     "Realizar a limpeza no local correto",
+     "Reportar a reposição dos produtos necessários para limpeza e conservação"
+    ],
+    "ind": 5
+   },
+   {
+    "titulo": "Rendimento do Serviço",
+    "itens": [
+     "Produtividade esperada do serviço destinado",
+     "Procurar entregar além das expectativas"
+    ],
+    "ind": 6
+   },
+   {
+    "titulo": "Qualidade do Serviço e Execução",
+    "itens": [
+     "Compreensão do serviço a ser executado",
+     "Execução conforme orientado",
+     "Boa aceitação e progresso nas execuções",
+     "Humildade em receber feedback"
+    ],
+    "ind": 7
+   },
+   {
+    "titulo": "Reportação de Manutenção",
+    "itens": [
+     "Reportar reparos e manutenções a tempo e hora",
+     "Ter critério / atenção ao conferir se os maquinários precisam de apontamento de manutenção"
+    ],
+    "ind": 8
+   },
+   {
+    "titulo": "Iniciativa / Proatividade e Engajamento",
+    "itens": [
+     "Busca por entregar além das expectativas",
+     "Participação",
+     "Cooperação entre os encarregados e líderes / gerência",
+     "Boa vontade em realizar o serviço",
+     "Iniciativa em propor algum serviço ou ideia",
+     "Envolvimento nas reciclagens e treinamentos",
+     "Busca pela execução sem depender de solicitações rotineiras"
+    ],
+    "ind": 9
+   },
+   {
+    "titulo": "Utilização das Ferramentas Tecnológicas",
+    "itens": [
+     "Utilizar os canais e plataformas presentes no celular",
+     "Interação na plataforma",
+     "Utilizar e responder dentro do prazo, por exemplo, pesquisas ou feedbacks",
+     "Ser honesto e verdadeiro nas respostas",
+     "Responder o painel de humor diariamente",
+     "Engajamento nos aplicativos",
+     "Boa aceitação das plataformas e tecnologias inseridas na operação",
+     "Priorizar a comunicação na plataforma",
+     "Fazer registros de reuniões na plataforma",
+     "Solicitar e enviar feedback aos colegas e à gestão"
+    ],
+    "ind": 10
+   }
+  ],
+  "apresentacao": "Este documento estabelece os indicadores e critérios de avaliação da função de Tratorista, com o objetivo de tornar as expectativas de desempenho claras, objetivas e acompanháveis. A avaliação considera aspectos comportamentais e técnicos próprios da função, incluindo cuidado pessoal, comportamento pessoal, manutenção de máquinas e implementos, uso de EPI. Os critérios abaixo deverão orientar os alinhamentos, feedbacks e o acompanhamento contínuo do desempenho, promovendo responsabilidade, desenvolvimento e consistência na execução das atividades."
+ },
+ {
+  "id": "vaqueiro-encarregado",
+  "funcao": "Vaqueiro / Encarregado",
+  "pessoa": null,
+  "lideres": [
+   "jeovane"
+  ],
+  "indicadores": [
+   "Cuidado Pessoal",
+   "Comportamento Pessoal",
+   "Sanidade do Animal / Mortalidade / Boas práticas com o animal",
+   "Lavagem dos Bebedouros e Manutenção do Sal",
+   "Manutenção e Execução da Estrutura",
+   "Manejo de Pasto",
+   "Organização e Limpeza",
+   "Responsabilidade com Controles Gerais",
+   "Liderança",
+   "Uso das Ferramentas Tecnológicas"
+  ],
+  "secoes": [
+   {
+    "titulo": "Cuidado Pessoal",
+    "itens": [
+     "Boa aparência",
+     "Bem-vestida / uniforme",
+     "Uniforme limpo e passado",
+     "Calçado limpo e de boa aparência",
+     "Calçado correto",
+     "Cabelo penteado",
+     "Higiene pessoal / cheiro",
+     "Cuidados com a saúde – médicos e exames em dia",
+     "Higiene bucal",
+     "Boa presença"
+    ],
+    "ind": 1
+   },
+   {
+    "titulo": "Comportamento Pessoal",
+    "itens": [
+     "Respeito às normas, orientações e cultura da empresa",
+     "Comportamento durante o trabalho",
+     "Tratativa com os colegas de trabalho",
+     "Relação interpessoal",
+     "Com o líder – respeito / reciprocidade",
+     "Aceitação na escuta e feedback",
+     "Comportamento com a família / amigos",
+     "Comportamento fora do ciclo do trabalho",
+     "Vícios",
+     "Saúde mental",
+     "Saúde financeira – adiantamento (20%) e empréstimos",
+     "Diálogo e abertura para ouvir os colegas",
+     "Proatividade e iniciativa",
+     "Busca por conhecimento e aprendizado",
+     "Pontualidade"
+    ],
+    "ind": 2
+   },
+   {
+    "titulo": "Sanidade do Animal / Mortalidade / Boas práticas com o animal",
+    "itens": [
+     "Conferência do lote total para verificação de animais que possivelmente precisam ser medicados",
+     "Realizar medicação imediata, a tempo e hora",
+     "Uso da medicação da maneira correta",
+     "Reportar necessidade de medicação com antecedência, sem prejudicar a medicação dos animais",
+     "Número de ocorrências de mortes por falta de identificação de um possível diagnóstico ou por falta do medicamento",
+     "Uso correto do laço",
+     "Não utilização de materiais proibidos pela fazenda, por exemplo, pinhola",
+     "Comportamento no pasto e no curral, por exemplo, xingamentos, gritos inadequados, agressão aos animais de forma desnecessária (bater no boi fora do contexto)",
+     "Forma racional de manejar os animais no curral",
+     "Armazenamento das medicações de forma adequada",
+     "Interesse em se conectar com os animais, bom envolvimento e interação",
+     "Zelo com a tropa – tosa frequente, casqueamento, lavar a tropa após a rodada. Não utilizar maus-tratos (esporas que cortam) ou agressões desnecessárias",
+     "Avaliação do score de fezes e reportar ao líder"
+    ],
+    "ind": 3
+   },
+   {
+    "titulo": "Lavagem dos Bebedouros e Manutenção do Sal",
+    "itens": [
+     "Frequência diária da limpeza dos bebedouros",
+     "Reposição do sal mineral de forma adequada",
+     "Mexer o sal diariamente, por exemplo, quebrar os torrões e misturar o sal velho com o novo quando necessário",
+     "Cálculo do consumo de sal mineral semanalmente – atualizar o consumo do sal mineral",
+     "Evitar desperdício do sal mineral",
+     "Remover o sal mineral quando ocorrer a retirada dos animais do pasto",
+     "Controle do estoque – reportar reposição dentro do prazo adequado",
+     "Armazenamento adequado do sal mineral (sacaria), tanto no barracão quanto nos contêineres",
+     "Organização da sacaria usada",
+     "Fornecimento do proteinado no horário previamente acordado"
+    ],
+    "ind": 4
+   },
+   {
+    "titulo": "Manutenção e Execução da Estrutura",
+    "itens": [
+     "Manutenção de cochos e bebedouros – reposição ou reparo se necessário",
+     "Condições de cercas – reposição de estacas quebradas, arames esticados, colchetes em condições de uso, choques com potência adequada, porteiras em condições adequadas",
+     "Manutenção de bebedouros e cochos cascalhados",
+     "Manutenção da pintura de porteiras e cercas",
+     "Curral – limpeza após uso, troca de tábuas quebradas, reparos diversos feitos no prazo adequado",
+     "Manutenção de toda a estrutura, desde barracões, currais e outros",
+     "Manutenção do reservatório de água"
+    ],
+    "ind": 5
+   },
+   {
+    "titulo": "Manejo de Pasto",
+    "itens": [
+     "Identificar e reportar cigarrinhas ou lagartas",
+     "Identificar e reportar áreas com invasoras que necessitam de aplicação de herbicida",
+     "Identificar e reportar troca de piquete ou ajuste de lotação animal",
+     "Identificar e reportar a condição da pastagem",
+     "Sugestão ao líder sobre manejos, priorizando o aproveitamento dos piquetes em melhor condição",
+     "Acompanhamento da adubação dos pastos"
+    ],
+    "ind": 6
+   },
+   {
+    "titulo": "Organização e Limpeza",
+    "itens": [
+     "Após toda utilização do curral, fazer a limpeza do curral, lavar as seringas e armazenar as medicações nos locais corretos",
+     "Destinação dos frascos, embalagens e medicamentos no lixo",
+     "Destinação semanal do lixo da fazenda para o lixão",
+     "Organização da farmácia e das tralhas de arreios e outros",
+     "Destinação de cada ferramenta aos locais certos",
+     "Organização de sacarias de sal, proteinado e bags de adubo",
+     "Limpeza e conservação das tralhas de arreio",
+     "Manutenção de todos os ambientes – lavados e organizados",
+     "Manter os banheiros de uso coletivo limpos – comunicar ao setor responsável",
+     "Limpeza e conservação da moradia"
+    ],
+    "ind": 7
+   },
+   {
+    "titulo": "Responsabilidade com Controles Gerais",
+    "itens": [
+     "Atualização do saldo de gado e das movimentações de entrada, saída e mortes",
+     "Controle do sal mineral, adubos, proteinados e medicamentos",
+     "Acompanhamento das movimentações da fazenda",
+     "Controle do almoxarifado",
+     "Controle de entrada e saída de ferramentas e maquinários",
+     "Reportar toda transferência de uma fazenda para outra – registrar no documento do almoxarifado",
+     "Reportar necessidade de serviços de pessoas ou empresas terceirizadas"
+    ],
+    "ind": 8
+   },
+   {
+    "titulo": "Liderança e Comunicação",
+    "itens": [
+     "Capacidade de engajamento dos liderados",
+     "Habilidade na comunicação com liderados e outras equipes",
+     "Habilidade de comunicação com os outros líderes da mesma função",
+     "Comunicar ao departamento de Gestão de Pessoas as ocorrências relacionadas ao seu setor",
+     "Respeitar os liderados – sem piadas e brincadeiras de mau gosto",
+     "Feedbacks aos liderados com frequência e de forma individual",
+     "Proatividade e iniciativa",
+     "Reuniões de alinhamento semanais",
+     "Planejamento e execução semanal",
+     "Uso correto do rádio",
+     "Aceitação dos feedbacks dos liderados",
+     "Aceitação ou consideração de maneira positiva das sugestões dos liderados (melhorias e ajustes de conduta)"
+    ],
+    "ind": 9
+   },
+   {
+    "titulo": "Uso das Ferramentas Tecnológicas",
+    "itens": [
+     "Utilizar os canais e plataformas presentes no celular",
+     "Interação na plataforma",
+     "Utilizar e responder dentro do prazo, por exemplo, pesquisas ou feedbacks",
+     "Ser honesto e verdadeiro nas respostas",
+     "Responder o painel de humor diariamente",
+     "Engajamento nos aplicativos",
+     "Boa aceitação das plataformas e tecnologias inseridas na operação",
+     "Priorizar a comunicação na plataforma",
+     "Fazer registros de reuniões na plataforma",
+     "Solicitar e enviar feedback aos colegas e à gestão"
+    ],
+    "ind": 10
+   }
+  ],
+  "apresentacao": "Este documento estabelece os indicadores e critérios de avaliação da função de Vaqueiro / Encarregado, com o objetivo de tornar as expectativas de desempenho claras, objetivas e acompanháveis. A avaliação considera aspectos comportamentais e técnicos próprios da função, incluindo cuidado pessoal, comportamento pessoal, sanidade do animal / mortalidade / boas práticas com o animal, lavagem dos bebedouros e manutenção do sal. Os critérios abaixo deverão orientar os alinhamentos, feedbacks e o acompanhamento contínuo do desempenho, promovendo responsabilidade, desenvolvimento e consistência na execução das atividades."
+ },
+ {
+  "id": "zelador-sedes",
+  "funcao": "Zelador das Sedes",
+  "pessoa": "Luciano",
+  "lideres": [
+   "alessandro"
+  ],
+  "indicadores": [
+   "Cuidado Pessoal",
+   "Comportamento Pessoal",
+   "Qualidade nas Vistorias",
+   "Planejamento e Organização das Prioridades",
+   "Controle das Demandas e Qualidade dos Relatórios Semanais",
+   "Agilidade e Qualidade na Resolução das Atividades Internas e Externas",
+   "Proatividade / Iniciativa / Relação Interpessoal",
+   "Manutenção e Execução das Demandas da Sede",
+   "Liderança e Nível de Engajamento com o Líder Direto",
+   "Uso das Ferramentas Tecnológicas"
+  ],
+  "secoes": [
+   {
+    "titulo": "Cuidado Pessoal",
+    "itens": [
+     "Boa aparência",
+     "Bem-vestida / uniforme",
+     "Uniforme limpo e passado",
+     "Calçado limpo e de boa aparência",
+     "Calçado correto",
+     "Cabelo penteado",
+     "Higiene pessoal / cheiro",
+     "Cuidados com a saúde – médicos e exames em dia",
+     "Higiene bucal",
+     "Boa presença"
+    ],
+    "ind": 1
+   },
+   {
+    "titulo": "Comportamento Pessoal",
+    "itens": [
+     "Respeito às normas, orientações e cultura da empresa",
+     "Comportamento durante o trabalho",
+     "Tratativa com os colegas de trabalho",
+     "Relação interpessoal",
+     "Com os líderes – respeito / reciprocidade",
+     "Aceitação na escuta e feedback",
+     "Comportamento com a família / amigos",
+     "Comportamento fora do ciclo do trabalho",
+     "Vícios",
+     "Saúde mental",
+     "Saúde financeira – adiantamento (20%) e empréstimos",
+     "Diálogo e abertura para ouvir os colegas",
+     "Proatividade e iniciativa",
+     "Busca por conhecimento e aprendizado",
+     "Pontualidade"
+    ],
+    "ind": 2
+   },
+   {
+    "titulo": "Qualidade nas Vistorias",
+    "itens": [
+     "Visão criteriosa na realização das vistorias",
+     "Detalhamento criterioso das atividades a serem realizadas",
+     "Checagem da limpeza da sede",
+     "Checagem da organização",
+     "Checagem do jardim e piscina",
+     "Checagem da parte hidráulica e elétrica",
+     "Conferência dos telhados e pintura",
+     "Checagem do controle dos insetos",
+     "Checagem de manutenções diversas",
+     "Checagem do bom uso e manutenção das ferramentas e máquinas"
+    ],
+    "ind": 3
+   },
+   {
+    "titulo": "Planejamento, Organização e Gestão das Prioridades",
+    "itens": [
+     "Anotar e relacionar as demandas",
+     "Organizar demandas por prioridade",
+     "Envolvimento na construção do planejamento com o líder",
+     "Organização das ferramentas",
+     "Reparo ou reposição das ferramentas",
+     "Verificação do estado e preservação das ferramentas e maquinários"
+    ],
+    "ind": 4
+   },
+   {
+    "titulo": "Controle das Demandas e Qualidade dos Relatórios Semanais",
+    "itens": [
+     "Controle das visitas e terceirizados nas fazendas",
+     "Relatório condizente com o trabalho realizado",
+     "Acompanhamento com os liderados referente às demandas necessárias"
+    ],
+    "ind": 5
+   },
+   {
+    "titulo": "Agilidade e Qualidade na Resolução das Atividades Internas e Externas",
+    "itens": [
+     "Agilidade e rapidez na execução, mantendo a qualidade do serviço",
+     "Fazer cotação e contratação com rapidez quando houver necessidade de contratar terceirizados",
+     "Acompanhamento dos serviços na busca de qualidade e agilidade"
+    ],
+    "ind": 6
+   },
+   {
+    "titulo": "Manutenção e Execução das Demandas da Sede",
+    "itens": [
+     "Execução conforme orientado pelos líderes / gerência",
+     "Qualidade das execuções de manutenção",
+     "Execução em tempo hábil",
+     "Qualidade no Planejado x Realizado",
+     "Manutenções conforme previsto – designado x execução"
+    ],
+    "ind": 8
+   },
+   {
+    "titulo": "Liderança e Nível de Engajamento com o Líder Direto",
+    "itens": [
+     "Capacidade de engajamento dos liderados",
+     "Habilidade na comunicação com liderados e outras equipes",
+     "Habilidade de comunicação com os outros líderes / gerentes / diretoria",
+     "Comunicar ao departamento de Gestão de Pessoas as ocorrências relacionadas ao seu setor",
+     "Respeitar os liderados – sem piadas e brincadeiras de mau gosto",
+     "Feedbacks aos liderados com frequência e de forma individual",
+     "Proatividade e iniciativa",
+     "Reuniões de alinhamento semanais com o líder e com os liderados",
+     "Planejamento e execução semanal",
+     "Uso correto do rádio",
+     "Aceitação dos feedbacks dos liderados",
+     "Aceitação ou consideração de maneira positiva das sugestões dos liderados (melhorias e ajustes de conduta)"
+    ],
+    "ind": 9
+   },
+   {
+    "titulo": "Proatividade / Iniciativa / Relação Interpessoal",
+    "itens": [
+     "Busca por entregar além das expectativas",
+     "Engajamento com o líder direto / gerência",
+     "Boa vontade em realizar o serviço",
+     "Iniciativa em propor algum serviço e ideia",
+     "Envolvimento nos treinamentos",
+     "Busca pela execução sem depender de solicitações rotineiras",
+     "Bom relacionamento com os liderados"
+    ],
+    "ind": 7
+   },
+   {
+    "titulo": "Uso das Ferramentas Tecnológicas",
+    "itens": [
+     "Utilizar os canais e plataformas presentes no celular",
+     "Interação na plataforma",
+     "Utilizar e responder dentro do prazo, por exemplo, pesquisas ou feedbacks",
+     "Ser honesto e verdadeiro nas respostas",
+     "Responder o painel de humor diariamente",
+     "Engajamento nos aplicativos",
+     "Boa aceitação das plataformas e tecnologias inseridas na operação",
+     "Priorizar a comunicação na plataforma",
+     "Fazer registros de reuniões na plataforma",
+     "Solicitar e enviar feedback aos colegas e à gestão"
+    ],
+    "ind": 10
+   }
+  ],
+  "apresentacao": "Este documento estabelece os indicadores e critérios de avaliação da função de Zelador das Sedes, com o objetivo de tornar as expectativas de desempenho claras, objetivas e acompanháveis. A avaliação considera aspectos comportamentais e técnicos próprios da função, incluindo comportamento pessoal, cuidado pessoal, qualidade nas vistorias, planejamento e organização das prioridades. Os critérios abaixo deverão orientar os alinhamentos, feedbacks e o acompanhamento contínuo do desempenho, promovendo responsabilidade, desenvolvimento e consistência na execução das atividades."
+ }
+];
+
+const ESCALA = [
+ {
+  "nota": 1,
+  "classe": "Péssimo / Muito ruim",
+  "ref": "Extremamente insatisfatório; não atendeu a nenhuma expectativa."
+ },
+ {
+  "nota": 2,
+  "classe": "Ruim",
+  "ref": "Insatisfatório; desempenho insuficiente, com necessidade de melhoria."
+ },
+ {
+  "nota": 3,
+  "classe": "Bom",
+  "ref": "Regular; atendeu ao básico."
+ },
+ {
+  "nota": 4,
+  "classe": "Muito bom",
+  "ref": "Atendeu às expectativas com destaque."
+ },
+ {
+  "nota": 5,
+  "classe": "Excelente",
+  "ref": "Atendeu e superou as expectativas com excelência."
+ }
+];
+</script>
+<script>
+(() => {
+  "use strict";
+
+  /* ---------------- util ---------------- */
+  const KEY_LIDER = "avaliacao_lider_selecionado";
+  const KEY_INSTALL = "avaliacao_install_dispensado";
+  const $app = document.getElementById("app");
+  const reduce = matchMedia("(prefers-reduced-motion: reduce)").matches;
+  const G = () => (!reduce && window.gsap) ? window.gsap : null;
+
+  const store = {
+    get(k) { try { return localStorage.getItem(k); } catch (e) { return null; } },
+    set(k, v) { try { localStorage.setItem(k, v); } catch (e) {} },
+    del(k) { try { localStorage.removeItem(k); } catch (e) {} },
+  };
+  const esc = s => String(s).replace(/[&<>"']/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
+  const fold = s => s.normalize("NFD").replace(/[̀-ͯ]/g, "").toLowerCase();
+  const pad = n => String(n).padStart(2, "0");
+  const initials = s => s.replace(/[^A-Za-zÀ-ÿ ]/g, " ").trim().split(/\s+/).slice(0, 2).map(w => w[0]).join("").toUpperCase();
+
+  const ROLE = Object.fromEntries(ROLES.map(r => [r.id, r]));
+  const LIDER = Object.fromEntries(LIDERES.map(l => [l.id, l]));
+  const roleTitle = r => r.pessoa || r.funcao;
+  const critCount = r => r.secoes.reduce((n, s) => n + s.itens.length + (s.grupos || []).reduce((m, g) => m + g.itens.length, 0), 0);
+  const plural = (n, a, b) => `${n} ${n === 1 ? a : b}`;
+
+  const I = {
+    chevR: '<svg class="chev" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m9 18 6-6-6-6"/></svg>',
+    chevD: '<svg class="chev" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg>',
+    chevL: '<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m15 18-6-6 6-6"/></svg>',
+    down: '<svg class="go" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 5v14"/><path d="m19 12-7 7-7-7"/></svg>',
+    check: '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9" opacity=".35"/><path d="m8.5 12.5 2.5 2.5 4.5-5"/></svg>',
+    search: '<svg class="ic" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>',
+    x: '<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg>',
+    users: '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>',
+    user: '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="8" r="4"/><path d="M4 21a8 8 0 0 1 16 0"/></svg>',
+    leaf: '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M11 20A7 7 0 0 1 9.8 6.1C15.5 5 17 4.48 19 2c1 2 2 4.18 2 8 0 5.5-4.78 10-10 10Z"/><path d="M2 21c0-3 1.85-5.36 5.08-6C9.5 14.52 12 13 13 12"/></svg>',
+    doc: '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8Z"/><path d="M14 3v5h5"/><path d="M9 13h6"/><path d="M9 17h4"/></svg>',
+    share: '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3v12"/><path d="m8 7 4-4 4 4"/><path d="M5 12v7a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2v-7"/></svg>',
+  };
+
+  /* ---------------- acesso ----------------
+     Futuro: PIN por líder. Trocar esta função por uma checagem de PIN
+     (pedir o PIN, comparar, resolver true/false). */
+  function autorizarLider(/* id */) { return Promise.resolve(true); }
+
+  const liderAtual = () => { const id = store.get(KEY_LIDER); return id && LIDER[id] ? LIDER[id] : null; };
+
+  /* ---------------- animações ---------------- */
+  function enter(stagger) {
+    const g = G(); if (!g) return;
+    g.fromTo($app.children, { opacity: 0, y: 10 }, { opacity: 1, y: 0, duration: .35, ease: "power2.out", clearProps: "transform,opacity" });
+    if (stagger) {
+      const items = $app.querySelectorAll(stagger);
+      if (items.length) g.from(items, { opacity: 0, y: 14, duration: .4, stagger: .05, ease: "power2.out", delay: .08, clearProps: "transform,opacity" });
+    }
+  }
+  function pop(el) {
+    const g = G(); if (!g || !el) return;
+    g.fromTo(el, { scale: .92 }, { scale: 1, duration: .45, ease: "back.out(3)", clearProps: "transform" });
+  }
+  function staggerIn(list) {
+    const g = G(); if (!g || !list.length) return;
+    const opts = list.length > 12 ? { amount: .45 } : { each: .04 };
+    g.from(list, { opacity: 0, y: 14, duration: .3, stagger: opts, ease: "power2.out", clearProps: "transform,opacity" });
+  }
+
+  /* ---------------- navegação ---------------- */
+  const scrollMem = {};
+  let forward = false, depth = 0;
+  if ("scrollRestoration" in history) history.scrollRestoration = "manual";
+  function go(hash, delay) {
+    const run = () => { forward = true; depth++; location.hash = hash; };
+    delay ? setTimeout(run, delay) : run();
+  }
+  window.addEventListener("hashchange", () => { render(); });
+  window.addEventListener("scroll", () => { scrollMem[location.hash || "#/"] = scrollY; }, { passive: true });
+
+  function render() {
+    const lider = liderAtual();
+    const h = location.hash || "#/";
+    const restore = !forward && scrollMem[h] != null;
+    forward = false;
+
+    if (h === "#/trocar") { store.del(KEY_LIDER); history.replaceState(null, "", "#/"); return render(); }
+    if (!lider) { viewGate(); }
+    else if (h.startsWith("#/f/")) {
+      const id = decodeURIComponent(h.slice(4));
+      const permitido = lider.liderados.includes(id) || lider.self === id;
+      if (!ROLE[id] || !permitido) { history.replaceState(null, "", "#/equipe"); return render(); }
+      viewRole(ROLE[id], lider);
+    } else { viewHome(lider); }
+
+    window.scrollTo(0, restore ? scrollMem[h] : 0);
+    const h1 = $app.querySelector("h1");
+    if (h1) h1.focus({ preventScroll: true });
+  }
+
+  /* ---------------- tela: quem é você ---------------- */
+  function viewGate() {
+    document.title = "Quem é você? · Critérios de Avaliação";
+    $app.innerHTML = `
+      <section class="gate">
+        <img class="gate-logo" src="icons/logo.webp" width="112" height="112" alt="Fazenda Boi Verde">
+        <p class="eyebrow">Critérios de avaliação</p>
+        <h1 class="display" tabindex="-1">Quem é você?</h1>
+        <p class="lead">Escolha seu nome para ver os indicadores e critérios da sua equipe.</p>
+        <div class="list" role="list">
+          ${LIDERES.map(l => `
+            <button class="card-btn" role="listitem" data-lider="${l.id}">
+              <span class="av" aria-hidden="true">${esc(initials(l.nome))}</span>
+              <span class="ci"><b>${esc(l.nome)}</b><span>${esc(l.cargo)}</span></span>
+              <span class="pill" aria-label="${plural(l.liderados.length, "liderado", "liderados")}">${I.users}${l.liderados.length}</span>
+              ${I.chevR}
+            </button>`).join("")}
+        </div>
+      </section>`;
+    $app.querySelectorAll("[data-lider]").forEach(b => b.addEventListener("click", () => {
+      pop(b);
+      const id = b.dataset.lider;
+      autorizarLider(id).then(ok => {
+        if (!ok) return;
+        store.set(KEY_LIDER, id);
+        go("#/equipe", G() ? 160 : 0);
+      });
+    }));
+    enter(".card-btn");
+  }
+
+  /* ---------------- tela: equipe do líder ---------------- */
+  function header(inner) {
+    return `<header class="hdr">${inner}</header>`;
+  }
+  function viewHome(l) {
+    document.title = `Equipe de ${l.nome} · Critérios de Avaliação`;
+    const equipe = l.liderados.map(id => ROLE[id]).sort((a, b) => roleTitle(a).localeCompare(roleTitle(b), "pt"));
+    const self = l.self && ROLE[l.self];
+    $app.innerHTML = `
+      ${header(`
+        <img class="hdr-logo" src="icons/logo.webp" width="36" height="36" alt="">
+        <div class="hdr-t"><small>Fazenda Boi Verde</small><b>Critérios de Avaliação</b></div>`)}
+      <section class="hello">
+        <p class="eyebrow">${esc(l.cargo)}</p>
+        <h1 class="display" tabindex="-1">Olá, ${esc(l.nome)}</h1>
+        <p class="lead">Toque em um colaborador para ver os indicadores e critérios cobrados na avaliação.</p>
+      </section>
+      <h2 class="sec-label">Minha equipe <span>${equipe.length}</span></h2>
+      <div class="list" role="list" style="margin-top:0">
+        ${equipe.map(r => {
+          const outros = r.lideres.filter(x => x !== l.id).map(x => LIDER[x].nome);
+          const sub = [r.pessoa ? r.funcao : null, outros.length ? `Também com ${outros.join(", ")}` : null].filter(Boolean).join(" · ");
+          return `
+          <button class="card-btn" role="listitem" data-role="${r.id}">
+            <span class="av" aria-hidden="true">${esc(initials(roleTitle(r)))}</span>
+            <span class="ci"><b>${esc(roleTitle(r))}</b>${sub ? `<span>${esc(sub)}</span>` : ""}</span>
+            ${I.chevR}
+          </button>`;
+        }).join("")}
+      </div>
+      ${self ? `
+      <div class="self">
+        <button class="self-btn" data-role="${self.id}">
+          <span class="self-ic" aria-hidden="true">${I.doc}</span>
+          <span class="ci"><b>Minha avaliação</b><span>${esc(self.funcao)}</span></span>
+          ${I.chevR}
+        </button>
+      </div>` : ""}
+      <p class="foot">Fazenda Boi Verde · Documento de referência</p>`;
+    $app.querySelectorAll("[data-role]").forEach(b => b.addEventListener("click", () => {
+      pop(b);
+      go("#/f/" + b.dataset.role, G() ? 140 : 0);
+    }));
+    enter(".list .card-btn");
+    maybeInstallHint();
+  }
+
+  /* ---------------- tela: função ---------------- */
+  function viewRole(r, l) {
+    const mine = l.self === r.id;
+    document.title = `${roleTitle(r)} · Critérios de Avaliação`;
+    const linked = new Map(r.secoes.map((s, i) => [s.ind, i]).filter(([k]) => k));
+    const lideres = r.lideres.map(x => LIDER[x].nome);
+
+    $app.innerHTML = `
+      ${header(`
+        <button class="back" data-back aria-label="Voltar">${I.chevL}<span>Voltar</span></button>
+        <div class="hdr-t"><small>${mine ? "Minha avaliação" : "Equipe de " + esc(l.nome)}</small><b>${esc(roleTitle(r))}</b></div>`)}
+      <section class="role-hero">
+        <p class="eyebrow">${mine ? "Minha avaliação" : esc(r.pessoa ? r.funcao : "Função")}</p>
+        <h1 class="display" tabindex="-1">${esc(roleTitle(r))}</h1>
+        <div class="chips">
+          <span class="chip">${I.user}${lideres.length > 1 ? "Líderes" : "Líder"}: ${esc(lideres.join(", "))}</span>
+          <span class="chip gold">10 indicadores · ${critCount(r)} critérios</span>
+        </div>
+        <details class="about">
+          <summary>Sobre esta avaliação ${I.chevD}</summary>
+          <p>${esc(r.apresentacao)}</p>
+        </details>
+      </section>
+
+      <h2 class="sec-label">Indicadores avaliados <span>10</span></h2>
+      <div class="inds">
+        ${r.indicadores.map((nome, i) => {
+          const n = i + 1, has = linked.has(n);
+          const inner = `<span class="n">${pad(n)}</span><span class="t">${esc(nome)}</span>`;
+          return has
+            ? `<button class="ind" data-goto="${linked.get(n)}" aria-label="${esc(nome)}: ver critérios">${inner}${I.down}</button>`
+            : `<div class="ind">${inner}</div>`;
+        }).join("")}
+      </div>
+
+      <h2 class="sec-label">Critérios</h2>
+      <div class="search" role="search">
+        <label class="sr" for="q">Buscar critério</label>
+        ${I.search}
+        <input id="q" type="search" inputmode="search" autocomplete="off" enterkeyhint="search" placeholder="Buscar critério…">
+        <button class="clr" type="button" aria-label="Limpar busca">${I.x}</button>
+      </div>
+      <p class="search-info" id="qinfo" aria-live="polite"></p>
+      <div class="accs" id="accs"></div>
+
+      <h2 class="sec-label">Escala de pontuação</h2>
+      <div class="scale">
+        ${ESCALA.map(e => `
+          <div class="sc">
+            <span class="nt" style="background:${["", "var(--red)", "#f97316", "var(--yellow)", "#86efac", "var(--accent)"][e.nota]}">${e.nota}</span>
+            <div><b>${esc(e.classe)}</b><span>${esc(e.ref)}</span></div>
+          </div>`).join("")}
+      </div>
+      <p class="foot">Fazenda Boi Verde · Documento de referência</p>`;
+
+    const $accs = document.getElementById("accs");
+    const $q = document.getElementById("q");
+    const $qinfo = document.getElementById("qinfo");
+    const $search = $q.parentElement;
+    const open = new Set();
+
+    const hl = (text, q) => {
+      if (!q) return esc(text);
+      const f = fold(text);
+      let out = "", i = 0, k;
+      while ((k = f.indexOf(q, i)) !== -1) {
+        out += esc(text.slice(i, k)) + "<mark>" + esc(text.slice(k, k + q.length)) + "</mark>";
+        i = k + q.length;
+      }
+      return out + esc(text.slice(i));
+    };
+    const li = (t, q) => `<li class="crit">${I.check}<span>${hl(t, q)}</span></li>`;
+
+    function drawSections(q) {
+      let shown = 0, hits = 0;
+      const html = r.secoes.map((s, idx) => {
+        let itens = s.itens, grupos = s.grupos || [];
+        if (q) {
+          const titleHit = fold(s.titulo).includes(q);
+          if (!titleHit) {
+            itens = itens.filter(t => fold(t).includes(q));
+            grupos = grupos.map(g => fold(g.titulo).includes(q) ? g : { titulo: g.titulo, itens: g.itens.filter(t => fold(t).includes(q)) }).filter(g => g.itens.length);
+          }
+          const n = itens.length + grupos.reduce((m, g) => m + g.itens.length, 0);
+          if (!n) return "";
+          hits += n;
+        }
+        shown++;
+        const total = itens.length + grupos.reduce((m, g) => m + g.itens.length, 0);
+        const isOpen = q ? true : open.has(idx);
+        return `
+          <section class="acc${isOpen ? " open" : ""}" id="sec-${idx}" data-idx="${idx}">
+            <button class="acc-h" aria-expanded="${isOpen}" aria-controls="secb-${idx}">
+              <span class="badge${s.ind ? "" : " leaf"}" aria-hidden="true">${s.ind ? pad(s.ind) : I.leaf}</span>
+              <span class="ci"><b>${hl(s.titulo, q)}</b><span>${plural(total, "critério", "critérios")}</span></span>
+              ${I.chevD}
+            </button>
+            <div class="acc-b" id="secb-${idx}" role="region"${isOpen ? "" : " inert"}>
+              <div class="acc-in">
+                <ul class="crits">${itens.map(t => li(t, q)).join("")}</ul>
+                ${grupos.map(g => `<p class="grp-t">${hl(g.titulo, q)}</p><ul class="crits">${g.itens.map(t => li(t, q)).join("")}</ul>`).join("")}
+              </div>
+            </div>
+          </section>`;
+      }).join("");
+
+      $accs.innerHTML = html || `<div class="empty"><b>Nenhum critério encontrado</b>Tente outra palavra, como “limpeza”, “prazo” ou “líder”.</div>`;
+      $qinfo.textContent = q ? (hits ? `${plural(hits, "critério encontrado", "critérios encontrados")} em ${plural(shown, "seção", "seções")}` : "") : "";
+      $accs.querySelectorAll(".acc-h").forEach(btn => btn.addEventListener("click", () => toggle(btn.parentElement)));
+    }
+
+    function toggle(sec, force) {
+      const idx = +sec.dataset.idx;
+      const willOpen = force != null ? force : !sec.classList.contains("open");
+      sec.classList.toggle("open", willOpen);
+      sec.querySelector(".acc-h").setAttribute("aria-expanded", willOpen);
+      sec.querySelector(".acc-b").toggleAttribute("inert", !willOpen);
+      willOpen ? open.add(idx) : open.delete(idx);
+      if (willOpen) staggerIn(sec.querySelectorAll(".crit, .grp-t"));
+    }
+
+    let t;
+    $q.addEventListener("input", () => {
+      clearTimeout(t);
+      $search.classList.toggle("has", !!$q.value);
+      t = setTimeout(() => {
+        const q = fold($q.value.trim());
+        drawSections(q.length >= 2 ? q : "");
+        const g = G(); if (g && q.length >= 2) g.from($accs.children, { opacity: 0, y: 10, duration: .3, stagger: .04, ease: "power2.out", clearProps: "transform,opacity" });
+      }, 140);
+    });
+    $search.querySelector(".clr").addEventListener("click", () => {
+      $q.value = ""; $search.classList.remove("has"); drawSections(""); $q.focus();
+    });
+
+    $app.querySelectorAll("[data-goto]").forEach(b => b.addEventListener("click", () => {
+      if ($q.value) { $q.value = ""; $search.classList.remove("has"); drawSections(""); }
+      const sec = document.getElementById("sec-" + b.dataset.goto);
+      if (!sec) return;
+      if (!sec.classList.contains("open")) toggle(sec, true);
+      sec.scrollIntoView({ behavior: reduce ? "auto" : "smooth", block: "start" });
+      sec.classList.add("flash"); setTimeout(() => sec.classList.remove("flash"), 900);
+    }));
+
+    $app.querySelector("[data-back]").addEventListener("click", () => {
+      if (depth > 0) { depth--; history.back(); }
+      else { history.replaceState(null, "", "#/equipe"); render(); }
+    });
+
+    drawSections("");
+    enter(".ind, .acc");
+  }
+
+  /* ---------------- aviso de instalação ---------------- */
+  let deferredPrompt = null;
+  window.addEventListener("beforeinstallprompt", e => { e.preventDefault(); deferredPrompt = e; });
+  const isStandalone = () => matchMedia("(display-mode: standalone)").matches || navigator.standalone === true;
+  const isIOS = /iphone|ipad|ipod/i.test(navigator.userAgent) || (navigator.platform === "MacIntel" && navigator.maxTouchPoints > 1);
+  let hintShown = false;
+
+  function maybeInstallHint() {
+    if (hintShown || isStandalone() || store.get(KEY_INSTALL)) return;
+    hintShown = true;
+    setTimeout(() => {
+      const slot = document.getElementById("install-slot");
+      const how = isIOS
+        ? `Toque em ${I.share} <b style="display:inline;font-size:inherit">Compartilhar</b> e depois em “Adicionar à Tela de Início”.`
+        : `Abra o menu do navegador e toque em “Instalar app” ou “Adicionar à tela inicial”.`;
+      slot.innerHTML = `
+        <div class="install" role="dialog" aria-label="Instalar aplicativo">
+          <img src="icons/logo.webp" width="40" height="40" alt="">
+          <div class="ci">
+            <b>Coloque na tela de início</b>
+            <span>${how}</span>
+            ${deferredPrompt ? `<button class="ok" data-install>Instalar agora</button>` : ""}
+          </div>
+          <button class="x" aria-label="Fechar aviso">${I.x}</button>
+        </div>`;
+      const box = slot.firstElementChild;
+      document.body.classList.add("hint");
+      const close = () => {
+        store.set(KEY_INSTALL, "1");
+        document.body.classList.remove("hint");
+        const g = G();
+        g ? g.to(box, { opacity: 0, y: 20, duration: .2, ease: "power2.in", onComplete: () => slot.innerHTML = "" }) : slot.innerHTML = "";
+      };
+      box.querySelector(".x").addEventListener("click", close);
+      const btn = box.querySelector("[data-install]");
+      if (btn) btn.addEventListener("click", async () => {
+        deferredPrompt.prompt();
+        await deferredPrompt.userChoice.catch(() => {});
+        deferredPrompt = null; close();
+      });
+      const g = G(); if (g) g.from(box, { opacity: 0, y: 30, duration: .45, ease: "back.out(1.7)" });
+    }, 1200);
+  }
+  window.addEventListener("appinstalled", () => { store.set(KEY_INSTALL, "1"); document.body.classList.remove("hint"); document.getElementById("install-slot").innerHTML = ""; });
+
+  /* ---------------- start ---------------- */
+  const start = () => render();
+  document.readyState === "complete" ? start() : window.addEventListener("load", start);
+
+  if ("serviceWorker" in navigator) {
+    window.addEventListener("load", () => navigator.serviceWorker.register("sw.js").catch(() => {}));
+  }
+})();
+</script>
+</body>
+</html>
