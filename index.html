@@ -62,6 +62,9 @@ button{font:inherit;color:inherit;background:none;border:0;cursor:pointer;touch-
 .hdr-t b{display:block;font-size:15px;font-weight:600;line-height:1.3;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 .back{flex:none;min-width:44px;height:44px;display:inline-flex;align-items:center;gap:2px;margin-left:-8px;padding:0 10px 0 4px;border-radius:12px;color:var(--accent);font-weight:600;font-size:15px}
 .back:active{background:rgba(74,222,128,.08)}
+.logout{flex:none;height:44px;display:inline-flex;align-items:center;gap:6px;margin-right:-6px;padding:0 10px;border-radius:12px;font-weight:600;font-size:14px;color:var(--txt)}
+.logout svg{color:var(--red)}
+.logout:hover,.logout:active{background:rgba(239,68,68,.1)}
 
 /* ---------- tipografia ---------- */
 .eyebrow{font-size:12px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--gold)}
@@ -3408,6 +3411,7 @@ const ESCALA = [
     check: '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9" opacity=".35"/><path d="m8.5 12.5 2.5 2.5 4.5-5"/></svg>',
     search: '<svg class="ic" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>',
     x: '<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg>',
+    logout: '<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><path d="m16 17 5-5-5-5"/><path d="M21 12H9"/></svg>',
     users: '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>',
     user: '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="8" r="4"/><path d="M4 21a8 8 0 0 1 16 0"/></svg>',
     leaf: '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M11 20A7 7 0 0 1 9.8 6.1C15.5 5 17 4.48 19 2c1 2 2 4.18 2 8 0 5.5-4.78 10-10 10Z"/><path d="M2 21c0-3 1.85-5.36 5.08-6C9.5 14.52 12 13 13 12"/></svg>',
@@ -3419,6 +3423,13 @@ const ESCALA = [
      Futuro: PIN por líder. Trocar esta função por uma checagem de PIN
      (pedir o PIN, comparar, resolver true/false). */
   function autorizarLider(/* id */) { return Promise.resolve(true); }
+
+  function sair() {
+    store.del(KEY_LIDER);
+    depth = 0;
+    history.replaceState(null, "", "#/");
+    render();
+  }
 
   const liderAtual = () => { const id = store.get(KEY_LIDER); return id && LIDER[id] ? LIDER[id] : null; };
 
@@ -3514,7 +3525,8 @@ const ESCALA = [
     $app.innerHTML = `
       ${header(`
         <img class="hdr-logo" src="icons/logo.webp" width="36" height="36" alt="">
-        <div class="hdr-t"><small>Fazenda Boi Verde</small><b>Critérios de Avaliação</b></div>`)}
+        <div class="hdr-t"><small>Fazenda Boi Verde</small><b>Critérios de Avaliação</b></div>
+        <button class="logout" data-logout>${I.logout}<span>Sair</span></button>`)}
       <section class="hello">
         <p class="eyebrow">${esc(l.cargo)}</p>
         <h1 class="display" tabindex="-1">Olá, ${esc(l.nome)}</h1>
@@ -3546,6 +3558,7 @@ const ESCALA = [
       pop(b);
       go("#/f/" + b.dataset.role, G() ? 140 : 0);
     }));
+    $app.querySelector("[data-logout]").addEventListener("click", sair);
     enter(".list .card-btn");
     maybeInstallHint();
   }
