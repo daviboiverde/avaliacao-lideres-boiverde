@@ -166,6 +166,26 @@ mark{background:rgba(245,158,11,.22);color:#fde68a;border-radius:3px;padding:0 1
 
 .foot{margin-top:36px;text-align:center;font-size:12px;color:var(--muted);opacity:.8}
 
+/* ---------- PIN ---------- */
+.pin{position:fixed;inset:0;z-index:60;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:calc(16px + var(--safe-t)) calc(16px + var(--safe-r)) calc(16px + var(--safe-b)) calc(16px + var(--safe-l));background:rgba(5,6,5,.86);-webkit-backdrop-filter:blur(24px);backdrop-filter:blur(24px)}
+.pin-box{width:100%;max-width:340px;text-align:center}
+.pin-top{position:absolute;top:calc(8px + var(--safe-t));left:calc(8px + var(--safe-l))}
+.pin .av{width:64px;height:64px;font-size:22px;margin:0 auto 14px}
+.pin h2{font-family:var(--serif);font-weight:600;font-size:28px;line-height:1.15}
+.pin-msg{margin-top:6px;min-height:22px;font-size:15px;color:var(--muted)}
+.pin-msg.err{color:#fca5a5}
+.dots{display:flex;justify-content:center;gap:18px;margin:26px 0 30px}
+.dot{width:14px;height:14px;border-radius:50%;border:2px solid rgba(255,255,255,.28);transition:background-color .15s,border-color .15s}
+.dot.on{background:var(--accent);border-color:var(--accent)}
+.dots.err .dot{border-color:var(--red);background:var(--red)}
+.dots.ok .dot{border-color:var(--accent);background:var(--accent)}
+.keys{display:grid;grid-template-columns:repeat(3,76px);justify-content:center;gap:16px 24px}
+.key{width:76px;height:76px;border-radius:50%;display:grid;place-items:center;font-size:28px;font-weight:500;font-variant-numeric:tabular-nums;background:var(--card2);border:1px solid var(--line);transition:background-color .12s}
+.key:active{background:rgba(74,222,128,.18)}
+.key.ghost{background:none;border-color:transparent;font-size:15px;font-weight:600;color:var(--muted)}
+.key:disabled{opacity:.35;cursor:not-allowed}
+@media (max-height:640px){.keys{gap:10px 22px}.key{width:66px;height:66px;font-size:24px}.dots{margin:18px 0 20px}}
+
 /* ---------- aviso de instalação ---------- */
 .install{position:fixed;z-index:50;left:50%;bottom:calc(12px + var(--safe-b));width:min(488px,calc(100% - 24px - var(--safe-l) - var(--safe-r)));transform:translateX(-50%);display:flex;gap:12px;align-items:flex-start;padding:14px 8px 14px 14px;background:rgba(21,29,22,.94);-webkit-backdrop-filter:blur(20px);backdrop-filter:blur(20px);border:1px solid rgba(74,222,128,.22);border-radius:18px;box-shadow:0 20px 50px -12px rgba(0,0,0,.7)}
 .install img{width:40px;height:40px;border-radius:50%;flex:none}
@@ -183,6 +203,7 @@ body.hint #app{padding-bottom:calc(160px + var(--safe-b))}
 <body>
 <div id="app" aria-live="polite"></div>
 <div id="install-slot"></div>
+<div id="pin-slot"></div>
 
 <script>
 // Gerado a partir dos 21 documentos Word – Fazenda Boi Verde
@@ -3377,6 +3398,20 @@ const ESCALA = [
 ];
 </script>
 <script>
+window.PIN_HASH = {
+ "oswaldo": "e3518536a8bda30174be342d551b52d6e1aa70584ecc99e7caf16392b2793186",
+ "jeovane": "9a1b2f2f8e081643f2c6e7d03c043c6a9f2db27d3d7164e68cf3cfddeaf4a588",
+ "alessandro": "c9d7dd68279eec1b574fab87f1ba48df9893e8fbfbc506b7f8fc6d3aa0374508",
+ "ludmilla": "06623453af1e08b238dd3af606a56a5d43e060da7afc02abb0b11ce5dacf0f48",
+ "luciano": "1d9368b809a66efdba42db46f53f61474d941c05878ced8e703ae1fa6a99ec0c",
+ "fernando": "b93703973c9aeceb62c0f90eda208e8c672bc82a832e497fd249f64f5b399dfe",
+ "iasmim": "4b068134b612ea4b98429730e1a3b2a0637bab4668133b016f55ced0c9d5b583",
+ "luciana": "dff1151cac1b243b402e04a09f6b1e52dd9f65161a3a99c94d0df55d07e256d8",
+ "geice": "1b0ac94b117ec142d834cfdd36dca3bb1e6a6538db70194dd5ef1371cc307c03",
+ "encarregado": "75d92b5f68603286fb22841332e10acc2088c1a952ad744d3971ae6f45d5410c"
+};
+</script>
+<script>
 (() => {
   "use strict";
 
@@ -3412,6 +3447,7 @@ const ESCALA = [
     search: '<svg class="ic" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>',
     x: '<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg>',
     logout: '<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><path d="m16 17 5-5-5-5"/><path d="M21 12H9"/></svg>',
+    del: '<svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 5H9l-7 7 7 7h11a2 2 0 0 0 2-2V7a2 2 0 0 0-2-2Z"/><path d="m18 9-6 6"/><path d="m12 9 6 6"/></svg>',
     users: '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>',
     user: '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="8" r="4"/><path d="M4 21a8 8 0 0 1 16 0"/></svg>',
     leaf: '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M11 20A7 7 0 0 1 9.8 6.1C15.5 5 17 4.48 19 2c1 2 2 4.18 2 8 0 5.5-4.78 10-10 10Z"/><path d="M2 21c0-3 1.85-5.36 5.08-6C9.5 14.52 12 13 13 12"/></svg>',
@@ -3419,10 +3455,127 @@ const ESCALA = [
     share: '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3v12"/><path d="m8 7 4-4 4 4"/><path d="M5 12v7a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2v-7"/></svg>',
   };
 
-  /* ---------------- acesso ----------------
-     Futuro: PIN por líder. Trocar esta função por uma checagem de PIN
-     (pedir o PIN, comparar, resolver true/false). */
-  function autorizarLider(/* id */) { return Promise.resolve(true); }
+  /* ---------------- acesso (PIN) ----------------
+     PIN_HASH[id] = SHA-256 de "boiverde:<id>:<pin>". Líder sem hash entra direto.
+     Proteção leve: evita entrar no perfil de outro líder por engano;
+     não é segurança forte (o código do site é público). */
+  const PIN_LEN = 4, MAX_ERROS = 5, BLOQUEIO_MS = 30000;
+  const keyErros = id => "avaliacao_pin_erros_" + id;
+  const keyBloq = id => "avaliacao_pin_bloqueio_" + id;
+
+  async function sha256(txt) {
+    const buf = await crypto.subtle.digest("SHA-256", new TextEncoder().encode(txt));
+    return [...new Uint8Array(buf)].map(b => b.toString(16).padStart(2, "0")).join("");
+  }
+
+  function autorizarLider(id) {
+    const hash = (window.PIN_HASH || {})[id];
+    if (!hash) return Promise.resolve(true);
+    return new Promise(resolve => abrirPin(LIDER[id], hash, resolve));
+  }
+
+  function abrirPin(l, hash, resolve) {
+    const slot = document.getElementById("pin-slot");
+    let pin = "", busy = false, timer = null;
+    const prontoMsg = `Digite seu PIN de ${PIN_LEN} dígitos`;
+    slot.innerHTML = `
+      <div class="pin" role="dialog" aria-modal="true" aria-labelledby="pin-t">
+        <div class="pin-top"><button class="back" data-cancel aria-label="Voltar">${I.chevL}<span>Voltar</span></button></div>
+        <div class="pin-box">
+          <span class="av" aria-hidden="true">${esc(initials(l.nome))}</span>
+          <h2 id="pin-t">Olá, ${esc(l.nome)}</h2>
+          <p class="pin-msg" aria-live="assertive">${prontoMsg}</p>
+          <div class="dots" aria-hidden="true">${'<span class="dot"></span>'.repeat(PIN_LEN)}</div>
+          <div class="keys">
+            ${[1, 2, 3, 4, 5, 6, 7, 8, 9].map(n => `<button class="key" data-k="${n}">${n}</button>`).join("")}
+            <button class="key ghost" data-cancel>Cancelar</button>
+            <button class="key" data-k="0">0</button>
+            <button class="key ghost" data-del aria-label="Apagar">${I.del}</button>
+          </div>
+        </div>
+      </div>`;
+    const box = slot.firstElementChild;
+    const $dots = box.querySelector(".dots");
+    const $msg = box.querySelector(".pin-msg");
+    const $keys = box.querySelectorAll("[data-k], [data-del]");
+    const g = G();
+    if (g) g.fromTo(box.querySelector(".pin-box"), { scale: .85, opacity: 0 }, { scale: 1, opacity: 1, duration: .45, ease: "back.out(1.7)" });
+
+    const paint = () => [...$dots.children].forEach((d, i) => d.classList.toggle("on", i < pin.length));
+    const msg = (t, err) => { $msg.textContent = t; $msg.classList.toggle("err", !!err); };
+    const lock = on => $keys.forEach(k => { k.disabled = on; });
+
+    function bloqueado() {
+      const ate = +store.get(keyBloq(l.id)) || 0;
+      const falta = ate - Date.now();
+      if (falta <= 0) {
+        if (timer) { clearInterval(timer); timer = null; }
+        if (ate) { store.del(keyBloq(l.id)); lock(false); msg(prontoMsg); }
+        return false;
+      }
+      lock(true);
+      msg(`Muitas tentativas. Tente de novo em ${Math.ceil(falta / 1000)} s`, true);
+      if (!timer) timer = setInterval(bloqueado, 1000);
+      return true;
+    }
+
+    function fechar(ok) {
+      if (timer) clearInterval(timer);
+      document.removeEventListener("keydown", onKey);
+      const end = () => { slot.innerHTML = ""; resolve(ok); };
+      if (g && !ok) g.to(box, { opacity: 0, duration: .18, ease: "power2.in", onComplete: end });
+      else end();
+    }
+
+    async function confere() {
+      busy = true;
+      const certo = (await sha256(`boiverde:${l.id}:${pin}`)) === hash;
+      if (certo) {
+        store.del(keyErros(l.id));
+        $dots.classList.add("ok");
+        setTimeout(() => fechar(true), 180);
+        return;
+      }
+      const erros = (+store.get(keyErros(l.id)) || 0) + 1;
+      store.set(keyErros(l.id), erros);
+      $dots.classList.add("err");
+      if (navigator.vibrate) navigator.vibrate(90);
+      if (g) g.fromTo($dots, { x: 0 }, { keyframes: { x: [-12, 12, -9, 9, -5, 5, 0] }, duration: .45, ease: "power1.out" });
+      setTimeout(() => {
+        $dots.classList.remove("err");
+        pin = ""; paint(); busy = false;
+        if (erros >= MAX_ERROS) {
+          store.del(keyErros(l.id));
+          store.set(keyBloq(l.id), Date.now() + BLOQUEIO_MS);
+          bloqueado();
+        } else {
+          msg(`PIN incorreto. ${plural(MAX_ERROS - erros, "tentativa restante", "tentativas restantes")}`, true);
+        }
+      }, 480);
+    }
+
+    function digita(n) {
+      if (busy || pin.length >= PIN_LEN || bloqueado()) return;
+      pin += n; paint();
+      const dot = $dots.children[pin.length - 1];
+      if (g && dot) g.fromTo(dot, { scale: .6 }, { scale: 1, duration: .3, ease: "back.out(3)" });
+      if (pin.length === PIN_LEN) confere();
+    }
+    function apaga() { if (!busy && pin) { pin = pin.slice(0, -1); paint(); } }
+    function onKey(e) {
+      if (/^[0-9]$/.test(e.key)) digita(e.key);
+      else if (e.key === "Backspace") apaga();
+      else if (e.key === "Escape") fechar(false);
+    }
+
+    box.querySelectorAll("[data-k]").forEach(b => b.addEventListener("click", () => digita(b.dataset.k)));
+    box.querySelector("[data-del]").addEventListener("click", apaga);
+    box.querySelectorAll("[data-cancel]").forEach(b => b.addEventListener("click", () => fechar(false)));
+    document.addEventListener("keydown", onKey);
+    bloqueado();
+    box.querySelector("h2").setAttribute("tabindex", "-1");
+    box.querySelector("h2").focus({ preventScroll: true });
+  }
 
   function sair() {
     store.del(KEY_LIDER);
